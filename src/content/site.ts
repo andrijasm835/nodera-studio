@@ -35,36 +35,17 @@ export const services = [
   },
 ];
 
-export const projects = [
-  {
-    id: "01",
-    title: "Yuumi Art",
-    type: "Interactive studio website",
-    year: "2026",
-    description:
-      "A beauty-studio site with pinned storytelling, booking flows, admin tools, and a mobile experience that feels considered.",
-    technologies: ["Next.js", "GSAP", "Supabase", "Resend"],
-    desktopImage: "/work/yuumi-hero.jpg",
-    mobileImage: "/work/yuumi-detail.jpg",
-    liveUrl: "",
-    caseStudyUrl: "",
-    accent: "#d8bd80",
-  },
-  {
-    id: "02",
-    title: "Plate & Fork",
-    type: "Restaurant SaaS landing experience",
-    year: "2026",
-    description:
-      "A product site for restaurant ordering, built around scroll-led presentation, localized copy, responsive mockups, and demo inquiries.",
-    technologies: ["Next.js", "GSAP", "Framer Motion", "Lenis"],
-    desktopImage: "/work/plateandfork-desktop.png",
-    mobileImage: "/work/plateandfork-mobile.png",
-    liveUrl: "",
-    caseStudyUrl: "",
-    accent: "#f04e23",
-  },
-];
+export const featuredProject = {
+  title: "Yummi Art",
+  type: "Beauty Studio / Website",
+  year: "2026",
+  description:
+    "A custom website and booking experience for a beauty studio, built around strong visuals, smooth motion, and practical day-to-day functionality.",
+  technologies: ["Next.js", "GSAP", "Supabase", "Resend"],
+  capabilities: ["Responsive frontend", "Booking and inquiry flows", "Admin scheduling", "Transactional email"],
+  desktopImage: "/work/yummi-desktop.png",
+  mobileImage: "/work/yummi-mobile.png",
+};
 
 export const process = [
   {

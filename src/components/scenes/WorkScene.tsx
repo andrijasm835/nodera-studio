@@ -2,124 +2,116 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { projects } from "@/content/site";
+import { featuredProject } from "@/content/site";
 import { gsap, useGsapScene } from "@/lib/useGsapScene";
 
 export function WorkScene() {
   const scope = useRef<HTMLElement>(null);
 
   useGsapScene(scope, () => {
-    const panels = gsap.utils.toArray<HTMLElement>(".work-panel", scope.current ?? undefined);
-    gsap.set(panels, { yPercent: 110, autoAlpha: 0, scale: 1.02 });
-    gsap.set(panels[0], { yPercent: 0, autoAlpha: 1, scale: 1 });
-    gsap.set(".work-info", { y: 18, autoAlpha: 0.45 });
-    gsap.set(panels[0].querySelector(".work-info"), { y: 0, autoAlpha: 1 });
-    gsap.set(".work-desktop", { y: 26, scale: 0.97, autoAlpha: 0 });
-    gsap.set(".work-mobile", { y: 32, scale: 0.95, autoAlpha: 0 });
-    gsap.set(".work-image", { scale: 1.035 });
+    const mm = gsap.matchMedia();
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: scope.current,
-        start: "top top",
-        end: `+=${Math.max(1, panels.length - 1) * 115}%`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-      },
+    mm.add("(min-width: 768px)", () => {
+      gsap.set(".case-desktop", { clipPath: "inset(100% 0 0 0)", y: 80, scale: 0.9 });
+      gsap.set(".case-mobile", { autoAlpha: 0, x: 80, y: 38, scale: 0.88 });
+      gsap.set(".case-detail", { autoAlpha: 0, y: 34 });
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: scope.current,
+          start: "top top",
+          end: "+=310%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      timeline
+        .to(".case-intro", { y: -24, opacity: 0.42, duration: 0.5, ease: "power1.inOut" }, 0)
+        .to(".case-desktop", { clipPath: "inset(0% 0 0 0)", y: 0, scale: 1, duration: 0.9, ease: "power2.inOut" }, 0.08)
+        .to(".case-desktop-image", { scale: 1.025, duration: 1.2, ease: "none" }, 0.22)
+        .to(".case-desktop", { xPercent: -9, yPercent: -4, scale: 0.9, duration: 0.72, ease: "power2.inOut" }, 1.02)
+        .to(".case-mobile", { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: 0.68, ease: "power2.out" }, 1.12)
+        .to(".case-detail", { autoAlpha: 1, y: 0, duration: 0.58, ease: "power2.out" }, 1.72)
+        .to(".case-mobile-image", { yPercent: -2.5, duration: 0.65, ease: "none" }, 1.72);
+
+      return () => timeline.kill();
     });
 
-    panels.forEach((panel, index) => {
-      const start = index === 0 ? 0 : index * 1.15;
+    mm.add("(max-width: 767px)", () => {
+      gsap.set(".case-desktop", { clipPath: "inset(100% 0 0 0)", y: 44, scale: 0.94 });
+      gsap.set(".case-mobile", { autoAlpha: 0, x: 38, y: 26, scale: 0.9 });
+      gsap.set(".case-detail", { autoAlpha: 0, y: 24 });
 
-      if (index > 0) {
-        tl.to(panels[index - 1], { yPercent: -72, autoAlpha: 0.2, scale: 0.96, duration: 0.62, ease: "power1.inOut" }, start - 0.58)
-          .to(panel, { yPercent: 0, autoAlpha: 1, scale: 1, duration: 0.62, ease: "power1.inOut" }, start - 0.58);
-      }
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: scope.current,
+          start: "top top",
+          end: "+=260%",
+          scrub: 0.8,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
 
-      tl.to(panel.querySelector(".work-info"), { y: 0, autoAlpha: 1, duration: 0.34, ease: "power2.out" }, start)
-        .to(panel.querySelector(".work-desktop"), { y: 0, scale: 1, autoAlpha: 1, duration: 0.52, ease: "power2.out" }, start + 0.12)
-        .to(panel.querySelector(".work-mobile"), { y: 0, scale: 1, autoAlpha: 1, duration: 0.46, ease: "power2.out" }, start + 0.25)
-        .to(panel.querySelectorAll(".work-image"), { scale: 1, duration: 0.62, ease: "power1.out" }, start + 0.12);
+      timeline
+        .to(".case-intro", { y: -18, opacity: 0.28, duration: 0.42, ease: "power1.inOut" }, 0)
+        .to(".case-desktop", { clipPath: "inset(0% 0 0 0)", y: 0, scale: 1, duration: 0.78, ease: "power2.inOut" }, 0.08)
+        .to(".case-desktop", { xPercent: -7, yPercent: -5, scale: 0.92, duration: 0.58, ease: "power2.inOut" }, 0.9)
+        .to(".case-mobile", { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: 0.58, ease: "power2.out" }, 1)
+        .to(".case-detail", { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }, 1.52);
+
+      return () => timeline.kill();
     });
 
-    return () => tl.kill();
+    return () => mm.revert();
   });
 
   return (
-    <section id="work" ref={scope} className="scene node-grid overflow-hidden px-4 py-24 [--node-grid-size:96px] [--node-line:rgba(241,238,229,0.035)] sm:px-6 lg:px-8">
-      <div className="mb-8 flex items-end justify-between gap-6">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)]">Selected work</p>
-          <h2 className="mt-4 text-[clamp(3rem,9vw,9rem)] font-semibold uppercase leading-[0.82] tracking-[-0.05em]">Proof of craft</h2>
+    <section id="work" ref={scope} className="scene node-grid overflow-hidden bg-[#090907] px-4 py-20 [--node-grid-size:96px] [--node-line:rgba(241,238,229,0.04)] sm:px-6 lg:px-8">
+      <div className="relative mx-auto h-[calc(100svh-10rem)] min-h-[620px] max-w-[1600px] overflow-hidden border-y border-white/12">
+        <header className="case-intro absolute left-0 top-6 z-20 max-w-[42rem] sm:top-8 lg:left-2 lg:top-10">
+          <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)]">Featured Work</p>
+          <h2 className="mt-4 text-[clamp(3.6rem,10vw,9.5rem)] font-semibold uppercase leading-[0.8] tracking-[-0.05em]">{featuredProject.title}</h2>
+          <div className="mt-5 flex gap-5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#aaa59a] sm:text-xs">
+            <span>{featuredProject.type}</span>
+            <span>{featuredProject.year}</span>
+          </div>
+          <p className="mt-5 max-w-xl text-base leading-7 text-[#c7c2b6] sm:text-lg sm:leading-8">{featuredProject.description}</p>
+        </header>
+
+        <div className="case-desktop panel-shadow absolute left-[8%] top-[36%] z-[4] aspect-[16/10] w-[88%] overflow-hidden border border-white/20 bg-[#f1eee5] md:left-[27%] md:top-[17%] md:w-[68%]">
+          <div className="flex h-7 items-center gap-2 border-b border-black/15 bg-[#e8e2d5] px-3 sm:h-8">
+            <span className="h-2 w-2 bg-[#090907]" />
+            <span className="h-2 w-2 border border-[#090907]/35" />
+            <span className="ml-auto h-px w-24 bg-[#090907]/20" />
+          </div>
+          <div className="relative h-[calc(100%-1.75rem)] overflow-hidden sm:h-[calc(100%-2rem)]">
+            <Image src={featuredProject.desktopImage} alt="Yummi Art desktop website" fill sizes="(max-width: 767px) 88vw, 68vw" className="case-desktop-image object-cover" priority />
+          </div>
         </div>
-        <p className="hidden max-w-sm text-right text-sm leading-6 text-[#aaa59a] md:block">Two recent builds with real motion systems, responsive UI, and practical business flows.</p>
-      </div>
-      <div className="relative h-[72svh] min-h-[580px] overflow-hidden">
-        {projects.map((project) => (
-          <article className="work-panel panel-shadow absolute inset-0 grid overflow-hidden bg-[#14140f] md:grid-cols-[0.9fr_1.1fr]" key={project.id}>
-            <div className="work-info relative flex flex-col justify-between border border-white/12 p-5 sm:p-8">
-              <div className="flex justify-between font-mono text-xs uppercase tracking-[0.22em] text-[#aaa59a]">
-                <span>{project.id}</span>
-                <span>{project.year}</span>
-              </div>
-              <div>
-                <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em]" style={{ color: project.accent }}>{project.type}</p>
-                <h3 className="max-w-[8ch] text-[clamp(3rem,9vw,8.5rem)] font-semibold uppercase leading-[0.78] tracking-[-0.055em]">{project.title}</h3>
-              </div>
-              <div>
-                <p className="max-w-md text-lg leading-8 text-[#c7c2b6]">{project.description}</p>
-                {project.technologies ? (
-                  <ul className="mt-5 flex flex-wrap gap-2">
-                    {project.technologies.map((technology) => (
-                      <li className="border border-white/18 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[#e8e3d7]" key={technology}>{technology}</li>
-                    ))}
-                  </ul>
-                ) : null}
-                {project.liveUrl ? (
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="mt-6 inline-block font-mono text-xs uppercase tracking-[0.22em]" style={{ color: project.accent }}>
-                    View project ↗
-                  </a>
-                ) : null}
-              </div>
-            </div>
-            <div className="node-field relative min-h-72 overflow-hidden border border-l-0 border-white/12 bg-[#0b0b08] p-5 [--node-color:var(--acid)] sm:p-8">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_20%,rgba(200,255,95,0.08),transparent_22rem),linear-gradient(120deg,rgba(255,255,255,0.045),transparent_38%)]" />
-              <div className="work-frame work-desktop absolute left-[7%] right-[11%] top-[12%] flex h-[58%] flex-col overflow-hidden border border-white/18 bg-[#f1eee5] shadow-[0_32px_90px_rgba(0,0,0,0.44)] sm:left-[8%] sm:right-[8%] sm:top-[13%] sm:h-[62%]">
-                <div className="flex h-7 items-center gap-2 border-b border-black/15 bg-[#e8e2d5] px-3">
-                  <span className="h-2 w-2 bg-[#090907]" />
-                  <span className="h-2 w-2 border border-[#090907]/35" />
-                  <span className="ml-auto h-px w-20 bg-[#090907]/20" />
-                </div>
-                <div className="relative min-h-0 flex-1">
-                  {project.desktopImage ? (
-                    <Image
-                      src={project.desktopImage}
-                      alt={`${project.title} desktop website preview`}
-                      fill
-                      sizes="(max-width: 767px) 86vw, 52vw"
-                      className="work-image object-contain"
-                      priority={project.id === "01"}
-                    />
-                  ) : null}
-                </div>
-              </div>
-              {project.mobileImage ? (
-                <div className="work-frame work-mobile absolute bottom-6 right-6 h-[46%] w-[25%] overflow-hidden border border-white/18 bg-[#111] shadow-2xl max-sm:h-[38%] max-sm:w-[34%]">
-                  <Image
-                    src={project.mobileImage}
-                    alt={`${project.title} mobile website preview`}
-                    fill
-                    sizes="(max-width: 767px) 34vw, 18vw"
-                    className="work-image object-contain"
-                  />
-                </div>
-              ) : null}
-              <div className="absolute left-6 top-6 font-mono text-xs uppercase tracking-[0.28em] text-white/62">{project.type}</div>
-              <div className="absolute bottom-6 left-6 h-3 w-28" style={{ backgroundColor: project.accent }} />
-            </div>
-          </article>
-        ))}
+
+        <div className="case-mobile panel-shadow absolute bottom-[7%] right-[5%] z-10 aspect-[390/844] h-[43%] overflow-hidden border border-white/25 bg-[#f1eee5] md:bottom-[8%] md:right-[5%] md:h-[55%]">
+          <div className="relative h-full overflow-hidden">
+            <Image src={featuredProject.mobileImage} alt="Yummi Art mobile website" fill sizes="(max-width: 767px) 20vw, 18vw" className="case-mobile-image object-cover" />
+          </div>
+        </div>
+
+        <div className="case-detail absolute bottom-5 left-0 z-20 w-[72%] bg-[#090907]/92 pt-4 md:bottom-8 md:left-2 md:w-[40%] md:pr-8">
+          <p className="max-w-md text-sm leading-6 text-[#c7c2b6] md:text-base md:leading-7">Responsive storytelling backed by live availability, booking and inquiry flows, admin scheduling, and transactional status emails.</p>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/15 pt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[#f1eee5]">
+            {featuredProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+          </ul>
+          <ul className="mt-3 hidden grid-cols-2 gap-x-5 gap-y-2 text-xs text-[#aaa59a] md:grid">
+            {featuredProject.capabilities.map((capability) => <li key={capability}>{capability}</li>)}
+          </ul>
+        </div>
+
+        <div className="absolute bottom-0 right-0 h-3 w-24 bg-[var(--acid)]" />
+        <div className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">01 / Case study</div>
       </div>
     </section>
   );
