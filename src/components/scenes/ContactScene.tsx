@@ -1,0 +1,42 @@
+"use client";
+
+import { useRef } from "react";
+import { siteConfig } from "@/content/site";
+import { gsap, useGsapScene } from "@/lib/useGsapScene";
+
+export function ContactScene() {
+  const scope = useRef<HTMLElement>(null);
+
+  useGsapScene(scope, () => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: scope.current,
+        start: "top 85%",
+        end: "top top",
+        scrub: 1,
+      },
+    });
+    tl.fromTo(".contact-wipe", { scaleX: 0 }, { scaleX: 1, transformOrigin: "left", ease: "none" }, 0)
+      .fromTo(".contact-title", { yPercent: 24, opacity: 0.2 }, { yPercent: 0, opacity: 1, ease: "none" }, 0.1)
+      .fromTo(".contact-rail", { xPercent: -38 }, { xPercent: 0, ease: "none" }, 0);
+    return () => tl.kill();
+  });
+
+  return (
+    <section id="contact" ref={scope} className="scene flex flex-col justify-between overflow-hidden bg-[#f1eee5] px-4 py-8 text-[#090907] sm:px-6 lg:px-8">
+      <div className="contact-wipe absolute left-0 top-0 h-2 w-full bg-[#090907]" />
+      <div className="contact-rail whitespace-nowrap border-y border-black py-3 font-mono text-xs uppercase tracking-[0.32em]">
+        Project inquiry / Custom websites / E-commerce / Maintenance / Feature development / Performance /
+      </div>
+      <div className="my-16">
+        <p className="font-mono text-xs uppercase tracking-[0.32em] text-black/55">Contact / {siteConfig.location}</p>
+        <h2 className="contact-title mt-5 max-w-[11ch] text-[clamp(4.2rem,13vw,15rem)] font-semibold uppercase leading-[0.78] tracking-[-0.06em]">Let’s build something worth visiting.</h2>
+      </div>
+      <div className="grid gap-5 border-t border-black/20 pt-6 text-lg sm:grid-cols-3">
+        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        <a href={siteConfig.instagram} target="_blank" rel="noreferrer">{siteConfig.instagramLabel}</a>
+        <a href={`mailto:${siteConfig.email}?subject=Project%20inquiry`}>Start a project inquiry</a>
+      </div>
+    </section>
+  );
+}

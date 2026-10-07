@@ -1,3 +1,12 @@
+export const siteConfig = {
+  name: "Nodera Studio",
+  shortName: "Nodera",
+  email: "hello@noderastudio.com",
+  instagram: "https://instagram.com/noderastudio",
+  instagramLabel: "@noderastudio",
+  location: "Serbia / Remote",
+};
+
 export const services = [
   {
     id: "01",
@@ -28,28 +37,59 @@ export const services = [
 export const projects = [
   {
     id: "01",
-    title: "Commerce System",
-    type: "E-commerce rebuild",
+    title: "Yuumi Art",
+    type: "Interactive studio website",
     year: "2026",
-    color: "#c8ff5f",
-    description: "A product-led storefront with faster browsing, sharper conversion paths, and a calmer editing workflow.",
+    description:
+      "A cinematic beauty-studio website with pinned storytelling, image-led service presentation, booking flows, admin tools, and polished mobile pacing.",
+    technologies: ["Next.js", "GSAP", "Supabase", "Resend"],
+    desktopImage: "/work/yuumi-hero.jpg",
+    mobileImage: "/work/yuumi-detail.jpg",
+    accent: "#d8bd80",
   },
   {
     id: "02",
-    title: "Studio Presence",
-    type: "Brand website",
+    title: "Plate & Fork",
+    type: "Restaurant SaaS landing experience",
     year: "2026",
-    color: "#6fdcff",
-    description: "A visual-first website designed to make a small service business feel premium, memorable, and easy to contact.",
-  },
-  {
-    id: "03",
-    title: "Legacy Lift",
-    type: "Existing site upgrade",
-    year: "2026",
-    color: "#ffb36f",
-    description: "Performance, UX, and component work layered into an existing website without forcing a full restart.",
+    description:
+      "A motion-heavy product site with scroll-sequenced hero animation, localized copy, responsive mockups, and conversion-focused demo flows.",
+    technologies: ["Next.js", "GSAP", "Framer Motion", "Lenis"],
+    desktopImage: "/work/plateandfork-desktop.png",
+    mobileImage: "/work/plateandfork-mobile.png",
+    accent: "#f04e23",
   },
 ];
 
-export const process = ["Discover", "Direction", "Build", "Refine", "Launch", "Support"];
+export const process = [
+  {
+    id: "01",
+    title: "Discover",
+    text: "Understand the business, current website, constraints, users, and what the new work needs to change.",
+  },
+  {
+    id: "02",
+    title: "Direction",
+    text: "Set the visual and technical direction before implementation starts moving fast.",
+  },
+  {
+    id: "03",
+    title: "Build",
+    text: "Design details become responsive components, motion systems, integrations, and production-ready pages.",
+  },
+  {
+    id: "04",
+    title: "Refine",
+    text: "Performance, UX, accessibility, browser behavior, and the small interactions get tuned.",
+  },
+  {
+    id: "05",
+    title: "Launch",
+    text: "The site ships with a clean release path, analytics basics, metadata, and practical handoff.",
+  },
+  {
+    id: "06",
+    title: "Support",
+    text: "After launch, I can keep improving the website instead of leaving it frozen.",
+  },
+];
