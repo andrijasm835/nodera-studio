@@ -12,9 +12,19 @@ export function WorkScene() {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
+      const desktopScreens = gsap.utils.toArray<HTMLElement>(".case-screen");
+      const mobileScreens = gsap.utils.toArray<HTMLElement>(".case-mobile-screen");
+      const stageCopies = gsap.utils.toArray<HTMLElement>(".case-stage-copy");
+
       gsap.set(".case-desktop", { clipPath: "inset(100% 0 0 0)", y: 80, scale: 0.9 });
       gsap.set(".case-mobile", { autoAlpha: 0, x: 80, y: 38, scale: 0.88 });
-      gsap.set(".case-detail", { autoAlpha: 0, y: 34 });
+      gsap.set(desktopScreens, { autoAlpha: 0, yPercent: 6 });
+      gsap.set(desktopScreens[0], { autoAlpha: 1, yPercent: 0 });
+      gsap.set(mobileScreens, { autoAlpha: 0, yPercent: 6 });
+      gsap.set(mobileScreens[1], { autoAlpha: 1, yPercent: 0 });
+      gsap.set(stageCopies, { autoAlpha: 0, y: 18 });
+      gsap.set(stageCopies[0], { autoAlpha: 1, y: 0 });
+      gsap.set(".case-stack", { autoAlpha: 0, y: 12 });
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -31,19 +41,37 @@ export function WorkScene() {
       timeline
         .to(".case-intro", { y: -24, opacity: 0.62, duration: 0.5, ease: "power1.inOut" }, 0)
         .to(".case-desktop", { clipPath: "inset(0% 0 0 0)", y: 0, scale: 1, duration: 0.9, ease: "power2.inOut" }, 0.08)
-        .to(".case-desktop-image", { scale: 1.025, duration: 1.2, ease: "none" }, 0.22)
+        .to(desktopScreens[0], { autoAlpha: 0, yPercent: -4, duration: 0.38, ease: "power1.inOut" }, 0.92)
+        .to(desktopScreens[1], { autoAlpha: 1, yPercent: 0, duration: 0.46, ease: "power1.inOut" }, 0.98)
+        .to(stageCopies[0], { autoAlpha: 0, y: -12, duration: 0.28, ease: "power1.in" }, 0.92)
+        .to(stageCopies[1], { autoAlpha: 1, y: 0, duration: 0.38, ease: "power2.out" }, 1.02)
         .to(".case-desktop", { xPercent: -9, yPercent: -4, scale: 0.9, duration: 0.72, ease: "power2.inOut" }, 1.02)
         .to(".case-mobile", { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: 0.68, ease: "power2.out" }, 1.12)
-        .to(".case-detail", { autoAlpha: 1, y: 0, duration: 0.58, ease: "power2.out" }, 1.72)
-        .to(".case-mobile-image", { yPercent: -2.5, duration: 0.65, ease: "none" }, 1.72);
+        .to(desktopScreens[1], { autoAlpha: 0, yPercent: -4, duration: 0.38, ease: "power1.inOut" }, 1.76)
+        .to(desktopScreens[2], { autoAlpha: 1, yPercent: 0, duration: 0.46, ease: "power1.inOut" }, 1.82)
+        .to(mobileScreens[1], { autoAlpha: 0, yPercent: -4, duration: 0.34, ease: "power1.inOut" }, 1.76)
+        .to(mobileScreens[2], { autoAlpha: 1, yPercent: 0, duration: 0.42, ease: "power1.inOut" }, 1.82)
+        .to(stageCopies[1], { autoAlpha: 0, y: -12, duration: 0.28, ease: "power1.in" }, 1.76)
+        .to(stageCopies[2], { autoAlpha: 1, y: 0, duration: 0.38, ease: "power2.out" }, 1.86)
+        .to(".case-stack", { autoAlpha: 1, y: 0, duration: 0.38, ease: "power2.out" }, 2.02);
 
       return () => timeline.kill();
     });
 
     mm.add("(max-width: 767px)", () => {
+      const desktopScreens = gsap.utils.toArray<HTMLElement>(".case-screen");
+      const mobileScreens = gsap.utils.toArray<HTMLElement>(".case-mobile-screen");
+      const stageCopies = gsap.utils.toArray<HTMLElement>(".case-stage-copy");
+
       gsap.set(".case-desktop", { clipPath: "inset(100% 0 0 0)", y: 44, scale: 0.94 });
       gsap.set(".case-mobile", { autoAlpha: 0, x: 38, y: 26, scale: 0.9 });
-      gsap.set(".case-detail", { autoAlpha: 0, y: 24 });
+      gsap.set(desktopScreens, { autoAlpha: 0, yPercent: 6 });
+      gsap.set(desktopScreens[0], { autoAlpha: 1, yPercent: 0 });
+      gsap.set(mobileScreens, { autoAlpha: 0, yPercent: 6 });
+      gsap.set(mobileScreens[1], { autoAlpha: 1, yPercent: 0 });
+      gsap.set(stageCopies, { autoAlpha: 0, y: 16 });
+      gsap.set(stageCopies[0], { autoAlpha: 1, y: 0 });
+      gsap.set(".case-stack", { autoAlpha: 0, y: 10 });
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -60,9 +88,19 @@ export function WorkScene() {
       timeline
         .to(".case-intro", { y: -18, opacity: 0.5, duration: 0.42, ease: "power1.inOut" }, 0)
         .to(".case-desktop", { clipPath: "inset(0% 0 0 0)", y: 0, scale: 1, duration: 0.78, ease: "power2.inOut" }, 0.08)
+        .to(desktopScreens[0], { autoAlpha: 0, yPercent: -4, duration: 0.32, ease: "power1.inOut" }, 0.78)
+        .to(desktopScreens[1], { autoAlpha: 1, yPercent: 0, duration: 0.4, ease: "power1.inOut" }, 0.84)
+        .to(stageCopies[0], { autoAlpha: 0, y: -10, duration: 0.24, ease: "power1.in" }, 0.78)
+        .to(stageCopies[1], { autoAlpha: 1, y: 0, duration: 0.32, ease: "power2.out" }, 0.88)
         .to(".case-desktop", { xPercent: -7, yPercent: -5, scale: 0.92, duration: 0.58, ease: "power2.inOut" }, 0.9)
         .to(".case-mobile", { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: 0.58, ease: "power2.out" }, 1)
-        .to(".case-detail", { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }, 1.52);
+        .to(desktopScreens[1], { autoAlpha: 0, yPercent: -4, duration: 0.32, ease: "power1.inOut" }, 1.48)
+        .to(desktopScreens[2], { autoAlpha: 1, yPercent: 0, duration: 0.4, ease: "power1.inOut" }, 1.54)
+        .to(mobileScreens[1], { autoAlpha: 0, yPercent: -4, duration: 0.3, ease: "power1.inOut" }, 1.48)
+        .to(mobileScreens[2], { autoAlpha: 1, yPercent: 0, duration: 0.36, ease: "power1.inOut" }, 1.54)
+        .to(stageCopies[1], { autoAlpha: 0, y: -10, duration: 0.24, ease: "power1.in" }, 1.48)
+        .to(stageCopies[2], { autoAlpha: 1, y: 0, duration: 0.32, ease: "power2.out" }, 1.58)
+        .to(".case-stack", { autoAlpha: 1, y: 0, duration: 0.32, ease: "power2.out" }, 1.72);
 
       return () => timeline.kill();
     });
@@ -90,23 +128,33 @@ export function WorkScene() {
             <span className="ml-auto h-px w-24 bg-[#090907]/20" />
           </div>
           <div className="relative min-h-0 flex-1 overflow-hidden">
-            <Image src={featuredProject.desktopImage} alt="Yummi Art desktop website" fill sizes="(max-width: 767px) 88vw, 68vw" className="case-desktop-image object-contain" priority />
+            {featuredProject.stages.map((stage, index) => (
+              <div className={`case-screen absolute inset-0 ${index === 0 ? "opacity-100" : "opacity-0"}`} key={stage.id}>
+                <Image src={stage.desktopImage} alt={`Yummi Art ${stage.title.toLowerCase()} desktop view`} fill sizes="(max-width: 767px) 88vw, 68vw" className="object-contain" priority={index === 0} />
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="case-mobile panel-shadow absolute bottom-[7%] right-[5%] z-10 aspect-[390/844] h-[43%] overflow-hidden border border-white/25 bg-[#f1eee5] md:bottom-[8%] md:right-[5%] md:h-[55%]">
           <div className="relative h-full overflow-hidden">
-            <Image src={featuredProject.mobileImage} alt="Yummi Art mobile website" fill sizes="(max-width: 767px) 20vw, 18vw" className="case-mobile-image object-cover" />
+            {featuredProject.stages.map((stage, index) => (
+              <div className={`case-mobile-screen absolute inset-0 ${index === 1 ? "opacity-100" : "opacity-0"}`} key={stage.id}>
+                <Image src={stage.mobileImage} alt={`Yummi Art ${stage.title.toLowerCase()} mobile view`} fill sizes="(max-width: 767px) 35vw, 18vw" className="object-contain" />
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="case-detail absolute bottom-5 left-0 z-20 w-[72%] bg-[#090907]/92 pt-4 md:bottom-8 md:left-2 md:w-[40%] md:pr-8">
-          <p className="max-w-md text-sm leading-6 text-[#c7c2b6] md:text-base md:leading-7">A responsive experience with live availability, guided booking and inquiry flows, practical admin scheduling, and automatic customer emails.</p>
-          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/15 pt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[#f1eee5]">
+        <div className="absolute bottom-5 left-0 z-20 h-[9.5rem] w-[72%] bg-[#090907]/92 pt-4 md:bottom-8 md:left-2 md:h-[11rem] md:w-[40%] md:pr-8">
+          {featuredProject.stages.map((stage, index) => (
+            <div className={`case-stage-copy absolute inset-x-0 top-4 ${index === 0 ? "opacity-100" : "opacity-0"}`} key={stage.id}>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--acid)]">{stage.id} / {stage.title}</p>
+              <p className="mt-3 max-w-md text-sm leading-6 text-[#c7c2b6] md:text-base md:leading-7">{stage.copy}</p>
+            </div>
+          ))}
+          <ul className="case-stack absolute bottom-0 left-0 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/15 pt-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[#f1eee5]">
             {featuredProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}
-          </ul>
-          <ul className="mt-3 hidden grid-cols-2 gap-x-5 gap-y-2 text-xs text-[#aaa59a] md:grid">
-            {featuredProject.capabilities.map((capability) => <li key={capability}>{capability}</li>)}
           </ul>
         </div>
 

@@ -42,9 +42,29 @@ export const featuredProject = {
   description:
     "A custom website and booking experience for a beauty studio, built around strong visuals, smooth motion, and practical day-to-day functionality.",
   technologies: ["Next.js", "GSAP", "Supabase", "Resend"],
-  capabilities: ["Responsive frontend", "Booking and inquiry flows", "Admin scheduling", "Transactional email"],
-  desktopImage: "/work/yummi-desktop.png",
-  mobileImage: "/work/yummi-mobile.png",
+  stages: [
+    {
+      id: "01",
+      title: "Visual Experience",
+      copy: "Art direction, responsive layouts, and scroll-led transitions shape a distinct studio experience.",
+      desktopImage: "/work/yummi/hero-desktop.png",
+      mobileImage: "/work/yummi/hero-mobile.png",
+    },
+    {
+      id: "02",
+      title: "Services in Motion",
+      copy: "Layered service storytelling keeps detailed offers visual, readable, and easy to explore.",
+      desktopImage: "/work/yummi/services-desktop.png",
+      mobileImage: "/work/yummi/services-mobile.png",
+    },
+    {
+      id: "03",
+      title: "Booking System",
+      copy: "Live availability guides bookings and inquiries, with admin scheduling and automatic status emails behind the flow.",
+      desktopImage: "/work/yummi/booking-desktop.png",
+      mobileImage: "/work/yummi/booking-mobile.png",
+    },
+  ],
 };
 
 export const process = [
