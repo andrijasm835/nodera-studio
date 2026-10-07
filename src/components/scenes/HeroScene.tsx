@@ -30,7 +30,7 @@ export function HeroScene() {
       .addLabel("release")
       .to(".hero-kicker, .hero-copy", { y: -18, autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release")
       .to(".hero-title", { yPercent: -13, scale: 0.955, duration: 0.68, ease: "power1.inOut" }, "release+=0.12")
-      .to(".hero-system", { xPercent: 10, yPercent: -10, scale: 0.96, duration: 0.68, ease: "power1.inOut" }, "release+=0.12")
+      .to(".hero-system", { xPercent: 10, yPercent: -10, scale: 0.96, duration: 0.68, ease: "power1.inOut" }, "release+=0.20")
       .to(".hero-surface-b", { xPercent: 22, yPercent: 22, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
       .to(".hero-surface-c", { xPercent: -18, yPercent: -12, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
       .to(".hero-system", { autoAlpha: 0, duration: 0.22, ease: "power1.in" }, "release+=0.54")
@@ -78,7 +78,7 @@ export function HeroScene() {
 
       <div className="relative z-10 w-full pointer-events-none">
         <p className="hero-kicker mb-5 max-w-[20rem] font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)] max-sm:max-w-[17rem] max-sm:tracking-[0.22em]">Independent Web Development Studio</p>
-        <h1 className="hero-title max-w-[14ch] overflow-hidden text-[clamp(4.25rem,12vw,12rem)] font-semibold uppercase leading-[0.78] tracking-[-0.04em] mix-blend-difference max-sm:text-[clamp(3rem,14vw,3.65rem)]">
+        <h1 className="hero-title max-w-[14ch] overflow-hidden text-[clamp(4.25rem,12vw,12rem)] font-semibold uppercase leading-[0.78] tracking-[-0.04em] max-sm:text-[clamp(3rem,14vw,3.65rem)]">
           <span className="block overflow-hidden"><span className="hero-line block">Websites</span></span>
           <span className="block overflow-hidden"><span className="hero-line block">built to</span></span>
           <span className="block overflow-hidden font-serif font-normal italic normal-case tracking-[-0.03em]"><span className="hero-line block">perform.</span></span>
