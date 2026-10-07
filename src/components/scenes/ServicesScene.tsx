@@ -28,7 +28,7 @@ export function ServicesScene() {
       scrollTrigger: {
         trigger: scope.current,
         start: "top top",
-        end: `+=${items.length * 82}%`,
+        end: `+=${(items.length - 1) * 82}%`,
         scrub: 1,
         pin: true,
         anticipatePin: 1,
@@ -36,11 +36,13 @@ export function ServicesScene() {
       },
     });
 
-    items.forEach((item, index) => {
-      tl.to(track, { y: () => getOffsetFor(item), duration: 0.55, ease: "power1.inOut" }, index)
-        .to(items, { opacity: 0.32, duration: 0.22, ease: "power1.out" }, index)
-        .to(item, { opacity: 1, duration: 0.28, ease: "power1.out" }, index)
-        .to(".service-orbit", { rotate: index * 34, scale: 1 + index * 0.025, duration: 0.55, ease: "power1.inOut" }, index);
+    items.slice(1).forEach((item, transitionIndex) => {
+      const itemIndex = transitionIndex + 1;
+
+      tl.to(track, { y: () => getOffsetFor(item), duration: 0.55, ease: "power1.inOut" }, transitionIndex)
+        .to(items, { opacity: 0.32, duration: 0.22, ease: "power1.out" }, transitionIndex)
+        .to(item, { opacity: 1, duration: 0.28, ease: "power1.out" }, transitionIndex)
+        .to(".service-orbit", { rotate: itemIndex * 34, scale: 1 + itemIndex * 0.025, duration: 0.55, ease: "power1.inOut" }, transitionIndex);
     });
 
     return () => tl.kill();

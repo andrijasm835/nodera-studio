@@ -30,7 +30,7 @@ export function AboutScene() {
       scrollTrigger: {
         trigger: scope.current,
         start: "top top",
-        end: `+=${process.length * 58}%`,
+        end: `+=${(process.length - 1) * 58}%`,
         scrub: 1,
         pin: true,
         anticipatePin: 1,
@@ -38,12 +38,14 @@ export function AboutScene() {
       },
     });
 
-    process.forEach((_, index) => {
-      tl.to(track, { x: () => getOffsetFor(steps[index]), duration: 0.55, ease: "power1.inOut" }, index)
-        .to(steps, { opacity: 0.18, duration: 0.2 }, index)
-        .to(steps[index], { opacity: 1, duration: 0.24 }, index)
-        .to(details, { autoAlpha: 0, y: -18, duration: 0.18 }, index)
-        .to(details[index], { autoAlpha: 1, y: 0, duration: 0.24 }, index + 0.1);
+    process.slice(1).forEach((_, transitionIndex) => {
+      const stepIndex = transitionIndex + 1;
+
+      tl.to(track, { x: () => getOffsetFor(steps[stepIndex]), duration: 0.55, ease: "power1.inOut" }, transitionIndex)
+        .to(steps, { opacity: 0.18, duration: 0.2 }, transitionIndex)
+        .to(steps[stepIndex], { opacity: 1, duration: 0.24 }, transitionIndex)
+        .to(details, { autoAlpha: 0, y: -18, duration: 0.18 }, transitionIndex)
+        .to(details[stepIndex], { autoAlpha: 1, y: 0, duration: 0.24 }, transitionIndex + 0.1);
     });
 
     return () => tl.kill();
