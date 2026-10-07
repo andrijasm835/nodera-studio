@@ -21,7 +21,7 @@ export function ExistingSiteScene() {
   });
 
   return (
-    <section ref={scope} className="scene flex items-center bg-[#c8ff5f] px-4 py-28 text-[#090907] sm:px-6 lg:px-8">
+    <section ref={scope} className="scene node-grid flex items-center bg-[#c8ff5f] px-4 py-28 text-[#090907] [--node-grid-size:88px] [--node-line:rgba(9,9,7,0.09)] sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-6xl">
         <div className="mb-8 space-y-3">
           <div className="existing-line h-px bg-black" />
@@ -30,7 +30,7 @@ export function ExistingSiteScene() {
         </div>
         <div className="existing-copy grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <h2 className="text-[clamp(3.8rem,11vw,11rem)] font-semibold uppercase leading-[0.78] tracking-[-0.055em]">Already have a website?</h2>
-          <p className="max-w-xl text-xl leading-8">I can improve what is already there. Redesigns, performance work, custom features, fixes, integrations, and ongoing development without forcing a complete rebuild.</p>
+          <p className="max-w-xl text-xl leading-8">I can improve what is already there: redesigns, performance work, custom features, fixes, integrations, and ongoing development without forcing a rebuild.</p>
         </div>
       </div>
     </section>

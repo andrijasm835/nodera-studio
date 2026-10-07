@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Nodera Studio",
   shortName: "Nodera",
+  // Temporary contact values until final public channels are confirmed.
   email: "hello@noderastudio.com",
   instagram: "https://instagram.com/noderastudio",
   instagramLabel: "@noderastudio",
@@ -41,10 +42,12 @@ export const projects = [
     type: "Interactive studio website",
     year: "2026",
     description:
-      "A cinematic beauty-studio website with pinned storytelling, image-led service presentation, booking flows, admin tools, and polished mobile pacing.",
+      "A beauty-studio site with pinned storytelling, booking flows, admin tools, and a mobile experience that feels considered.",
     technologies: ["Next.js", "GSAP", "Supabase", "Resend"],
     desktopImage: "/work/yuumi-hero.jpg",
     mobileImage: "/work/yuumi-detail.jpg",
+    liveUrl: "",
+    caseStudyUrl: "",
     accent: "#d8bd80",
   },
   {
@@ -53,10 +56,12 @@ export const projects = [
     type: "Restaurant SaaS landing experience",
     year: "2026",
     description:
-      "A motion-heavy product site with scroll-sequenced hero animation, localized copy, responsive mockups, and conversion-focused demo flows.",
+      "A product site for restaurant ordering, built around scroll-led presentation, localized copy, responsive mockups, and demo inquiries.",
     technologies: ["Next.js", "GSAP", "Framer Motion", "Lenis"],
     desktopImage: "/work/plateandfork-desktop.png",
     mobileImage: "/work/plateandfork-mobile.png",
+    liveUrl: "",
+    caseStudyUrl: "",
     accent: "#f04e23",
   },
 ];
@@ -65,31 +70,31 @@ export const process = [
   {
     id: "01",
     title: "Discover",
-    text: "Understand the business, current website, constraints, users, and what the new work needs to change.",
+    text: "Clarify the business, the current website, the users, and what the work needs to improve.",
   },
   {
     id: "02",
     title: "Direction",
-    text: "Set the visual and technical direction before implementation starts moving fast.",
+    text: "Choose the visual and technical direction before implementation starts moving fast.",
   },
   {
     id: "03",
     title: "Build",
-    text: "Design details become responsive components, motion systems, integrations, and production-ready pages.",
+    text: "Turn the direction into responsive components, motion, integrations, and production pages.",
   },
   {
     id: "04",
     title: "Refine",
-    text: "Performance, UX, accessibility, browser behavior, and the small interactions get tuned.",
+    text: "Tune performance, UX, accessibility, browser behavior, and the details people actually feel.",
   },
   {
     id: "05",
     title: "Launch",
-    text: "The site ships with a clean release path, analytics basics, metadata, and practical handoff.",
+    text: "Ship with a clean release path, metadata, analytics basics, and practical handoff.",
   },
   {
     id: "06",
     title: "Support",
-    text: "After launch, I can keep improving the website instead of leaving it frozen.",
+    text: "Keep improving the site after launch when the roadmap changes or the business grows.",
   },
 ];

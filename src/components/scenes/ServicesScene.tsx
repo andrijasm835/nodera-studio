@@ -52,7 +52,7 @@ export function ServicesScene() {
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#697530]">Services</p>
           <h2 className="mt-5 max-w-[9ch] text-[clamp(3.2rem,8vw,8.6rem)] font-semibold uppercase leading-[0.82] tracking-[-0.045em]">Not a template pipeline.</h2>
-          <p className="mt-7 max-w-md text-lg leading-8 text-black/62">The work spans from complete builds to the careful improvements that make an existing website finally feel alive.</p>
+          <p className="mt-7 max-w-md text-lg leading-8 text-black/62">I build new websites, improve existing ones, and handle the technical work that keeps them moving.</p>
         </div>
         <div className="service-viewport relative h-[70svh] min-h-[520px] overflow-hidden border-l border-black/15 pl-5 sm:pl-8">
           <div className="service-orbit pointer-events-none absolute right-0 top-10 h-72 w-72 border border-black/15">

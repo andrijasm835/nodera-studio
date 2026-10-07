@@ -8,6 +8,7 @@
   --acid: #c8ff5f;
   --cyan: #6fdcff;
   --ember: #ff8f5f;
+  --node-size: 7px;
 }
 
 @theme inline {
@@ -25,13 +26,16 @@
 html {
   background: var(--background);
   color: var(--foreground);
+  overflow-x: hidden;
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 body {
   min-height: 100%;
   margin: 0;
-  overflow-x: clip;
+  overflow-x: hidden;
+  width: 100%;
   background:
     radial-gradient(circle at 72% 8%, rgba(200, 255, 95, 0.12), transparent 28rem),
     linear-gradient(180deg, #090907 0%, #11110d 42%, #070706 100%);
@@ -94,6 +98,38 @@ button:focus-visible {
 
 .mask-reveal {
   clip-path: inset(0 0 0 0);
+}
+
+.node-field {
+  position: relative;
+}
+
+.node-field::before,
+.node-field::after {
+  position: absolute;
+  z-index: 1;
+  width: var(--node-size);
+  height: var(--node-size);
+  pointer-events: none;
+  content: "";
+  background: var(--node-color, var(--acid));
+}
+
+.node-field::before {
+  left: var(--node-left, 1.5rem);
+  top: var(--node-top, 1.5rem);
+}
+
+.node-field::after {
+  right: var(--node-right, 1.5rem);
+  bottom: var(--node-bottom, 1.5rem);
+}
+
+.node-grid {
+  background-image:
+    linear-gradient(var(--node-line, rgba(241, 238, 229, 0.11)) 1px, transparent 1px),
+    linear-gradient(90deg, var(--node-line, rgba(241, 238, 229, 0.09)) 1px, transparent 1px);
+  background-size: var(--node-grid-size, 72px) var(--node-grid-size, 72px);
 }
 
 @media (prefers-reduced-motion: reduce) {

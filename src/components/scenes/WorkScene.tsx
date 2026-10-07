@@ -12,7 +12,8 @@ export function WorkScene() {
     const panels = gsap.utils.toArray<HTMLElement>(".work-panel", scope.current ?? undefined);
     gsap.set(panels, { yPercent: 110, autoAlpha: 0, scale: 1.02 });
     gsap.set(panels[0], { yPercent: 0, autoAlpha: 1, scale: 1 });
-    gsap.set(".work-image", { scale: 1.05 });
+    gsap.set(".work-frame", { y: 26, scale: 0.96 });
+    gsap.set(".work-image", { scale: 1.035 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -26,7 +27,8 @@ export function WorkScene() {
     });
 
     panels.forEach((panel, index) => {
-      tl.to(panel.querySelectorAll(".work-image"), { scale: 1, duration: 0.9, ease: "power1.inOut" }, index);
+      tl.to(panel.querySelectorAll(".work-frame"), { y: 0, scale: 1, duration: 0.9, ease: "power1.inOut" }, index)
+        .to(panel.querySelectorAll(".work-image"), { scale: 1, duration: 0.9, ease: "power1.inOut" }, index);
     });
 
     for (let index = 1; index < panels.length; index += 1) {
@@ -38,13 +40,13 @@ export function WorkScene() {
   });
 
   return (
-    <section id="work" ref={scope} className="scene overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+    <section id="work" ref={scope} className="scene node-grid overflow-hidden px-4 py-24 [--node-grid-size:96px] [--node-line:rgba(241,238,229,0.035)] sm:px-6 lg:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)]">Selected work</p>
           <h2 className="mt-4 text-[clamp(3rem,9vw,9rem)] font-semibold uppercase leading-[0.82] tracking-[-0.05em]">Proof of craft</h2>
         </div>
-        <p className="hidden max-w-sm text-right text-sm leading-6 text-[#aaa59a] md:block">Two recent builds, both shaped around motion, responsiveness, and a stronger business presence.</p>
+        <p className="hidden max-w-sm text-right text-sm leading-6 text-[#aaa59a] md:block">Two recent builds with real motion systems, responsive UI, and practical business flows.</p>
       </div>
       <div className="relative h-[72svh] min-h-[580px] overflow-hidden">
         {projects.map((project) => (
@@ -67,28 +69,42 @@ export function WorkScene() {
                     ))}
                   </ul>
                 ) : null}
+                {project.liveUrl ? (
+                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="mt-6 inline-block font-mono text-xs uppercase tracking-[0.22em]" style={{ color: project.accent }}>
+                    View project ↗
+                  </a>
+                ) : null}
               </div>
             </div>
-            <div className="relative min-h-72 overflow-hidden border border-l-0 border-white/12 bg-[#0b0b08]">
-              {project.desktopImage ? (
-                <Image
-                  src={project.desktopImage}
-                  alt={`${project.title} desktop website preview`}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 58vw"
-                  className="work-image object-cover opacity-90"
-                  priority={project.id === "01"}
-                />
-              ) : null}
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,8,0.42),transparent_42%,rgba(11,11,8,0.2)),linear-gradient(180deg,transparent,rgba(11,11,8,0.44))]" />
+            <div className="node-field relative min-h-72 overflow-hidden border border-l-0 border-white/12 bg-[#0b0b08] p-5 [--node-color:var(--acid)] sm:p-8">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_20%,rgba(200,255,95,0.08),transparent_22rem),linear-gradient(120deg,rgba(255,255,255,0.045),transparent_38%)]" />
+              <div className="work-frame absolute left-[7%] right-[11%] top-[12%] flex h-[58%] flex-col overflow-hidden border border-white/18 bg-[#f1eee5] shadow-[0_32px_90px_rgba(0,0,0,0.44)] sm:left-[8%] sm:right-[8%] sm:top-[13%] sm:h-[62%]">
+                <div className="flex h-7 items-center gap-2 border-b border-black/15 bg-[#e8e2d5] px-3">
+                  <span className="h-2 w-2 bg-[#090907]" />
+                  <span className="h-2 w-2 border border-[#090907]/35" />
+                  <span className="ml-auto h-px w-20 bg-[#090907]/20" />
+                </div>
+                <div className="relative min-h-0 flex-1">
+                  {project.desktopImage ? (
+                    <Image
+                      src={project.desktopImage}
+                      alt={`${project.title} desktop website preview`}
+                      fill
+                      sizes="(max-width: 767px) 86vw, 52vw"
+                      className="work-image object-contain"
+                      priority={project.id === "01"}
+                    />
+                  ) : null}
+                </div>
+              </div>
               {project.mobileImage ? (
-                <div className="absolute bottom-6 right-6 h-[54%] w-[28%] overflow-hidden border border-white/18 bg-[#111] shadow-2xl max-sm:h-[44%] max-sm:w-[34%]">
+                <div className="work-frame absolute bottom-6 right-6 h-[46%] w-[25%] overflow-hidden border border-white/18 bg-[#111] shadow-2xl max-sm:h-[38%] max-sm:w-[34%]">
                   <Image
                     src={project.mobileImage}
                     alt={`${project.title} mobile website preview`}
                     fill
                     sizes="(max-width: 767px) 34vw, 18vw"
-                    className="work-image object-cover"
+                    className="work-image object-contain"
                   />
                 </div>
               ) : null}
