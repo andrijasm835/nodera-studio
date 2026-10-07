@@ -23,7 +23,7 @@ export function ContactScene() {
   });
 
   return (
-    <section id="contact" ref={scope} className="scene node-grid flex flex-col justify-between overflow-hidden bg-[#f1eee5] px-4 py-8 text-[#090907] [--node-grid-size:92px] [--node-line:rgba(9,9,7,0.08)] sm:px-6 lg:px-8">
+    <section id="contact" ref={scope} className="scene node-grid flex flex-col justify-between overflow-hidden bg-[#f1eee5] px-4 pb-8 pt-24 text-[#090907] [--node-grid-size:92px] [--node-line:rgba(9,9,7,0.08)] sm:px-6 sm:pt-28 lg:px-8">
       <div className="contact-wipe absolute left-0 top-0 h-2 w-full bg-[#090907]" />
       <div className="contact-rail whitespace-nowrap border-y border-black py-3 font-mono text-xs uppercase tracking-[0.32em]">
         Project inquiry / Websites / E-commerce / Maintenance / Features / Performance /

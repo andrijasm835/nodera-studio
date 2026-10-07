@@ -121,6 +121,26 @@ button:focus-visible {
   bottom: var(--node-bottom, 1.5rem);
 }
 
+.hero-node-surface.node-field::before,
+.hero-node-surface.node-field::after {
+  z-index: 0;
+}
+
+.site-navigation {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.site-navigation.is-contact {
+  border-bottom: 1px solid rgba(9, 9, 7, 0.12);
+  background: rgba(241, 238, 229, 0.94);
+  color: #090907;
+  mix-blend-mode: normal;
+  backdrop-filter: blur(10px);
+}
+
 .node-grid {
   background-image:
     linear-gradient(var(--node-line, rgba(241, 238, 229, 0.11)) 1px, transparent 1px),
