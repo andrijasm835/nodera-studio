@@ -121,9 +121,18 @@ button:focus-visible {
   bottom: var(--node-bottom, 1.5rem);
 }
 
-.hero-node-surface.node-field::before,
-.hero-node-surface.node-field::after {
-  z-index: 0;
+.node-field > .node-content {
+  position: relative;
+  z-index: 2;
+}
+
+.node-copy {
+  position: relative;
+  z-index: 2;
+  background: var(--node-panel-background);
+  box-shadow: 0 0 0 2px var(--node-panel-background);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .site-navigation {

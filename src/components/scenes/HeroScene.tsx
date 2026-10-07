@@ -47,13 +47,13 @@ export function HeroScene() {
       <div className="node-grid absolute inset-0 bg-[radial-gradient(circle_at_62%_38%,rgba(111,220,255,0.1),transparent_24rem),radial-gradient(circle_at_20%_70%,rgba(200,255,95,0.1),transparent_22rem)] opacity-80 [--node-grid-size:88px] [--node-line:rgba(241,238,229,0.045)]" />
 
       <div
-        className="hero-node-surface hero-system identity-surface node-field panel-shadow absolute left-[48vw] top-[13svh] z-[4] isolate h-[clamp(15rem,38svh,27rem)] w-[clamp(17rem,36vw,35rem)] border border-white/15 bg-[#f1eee5] p-4 text-[#090907] [--node-color:#090907] max-sm:left-[47vw] max-sm:top-[17svh] max-sm:h-[13rem] max-sm:w-[15rem]"
+        className="hero-node-surface hero-system identity-surface node-field panel-shadow absolute left-[48vw] top-[13svh] z-[4] isolate h-[clamp(15rem,38svh,27rem)] w-[clamp(17rem,36vw,35rem)] border border-white/15 bg-[#f1eee5] p-4 text-[#090907] [--node-color:#090907] [--node-panel-background:#f1eee5] max-sm:left-[47vw] max-sm:top-[17svh] max-sm:h-[13rem] max-sm:w-[15rem]"
       >
         <div className="absolute -left-4 top-1/3 h-px w-10 bg-[#c8ff5f]" />
         <div className="absolute -bottom-4 right-1/4 h-10 w-px bg-[#c8ff5f]" />
-        <div className="relative z-[2] grid h-full grid-rows-[0.6fr_1fr_0.58fr] gap-3">
+        <div className="node-content grid h-full grid-rows-[0.6fr_1fr_0.58fr] gap-3">
           <div className="border-b border-black/18">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-55">Nodera / System</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-55"><span className="node-copy">Nodera / System</span></p>
           </div>
           <div className="grid grid-cols-[1.25fr_0.75fr] gap-3">
             <div className="bg-[#090907]" />
@@ -67,13 +67,15 @@ export function HeroScene() {
         </div>
       </div>
 
-      <div className="hero-node-surface hero-surface hero-surface-b node-field absolute bottom-[20svh] right-[13vw] z-[5] isolate h-28 w-56 border border-[var(--acid)] bg-[#c8ff5f] p-4 text-[#090907] [--node-color:#090907] max-sm:hidden">
-        <p className="relative z-[2] font-mono text-xs uppercase tracking-[0.18em]">Designed to launch clean. Built to keep moving.</p>
+      <div className="hero-node-surface hero-surface hero-surface-b node-field absolute bottom-[20svh] right-[13vw] z-[5] isolate h-28 w-56 border border-[var(--acid)] bg-[#c8ff5f] p-4 text-[#090907] [--node-color:#090907] [--node-panel-background:#c8ff5f] max-sm:hidden">
+        <p className="node-content font-mono text-xs uppercase tracking-[0.18em]"><span className="node-copy">Designed to launch clean. Built to keep moving.</span></p>
       </div>
 
       <div className="hero-node-surface hero-surface hero-surface-c node-field absolute left-[7vw] top-[18svh] z-[3] hidden isolate h-[34svh] w-[18vw] border border-white/10 bg-white/[0.035] [--node-color:#c8ff5f] backdrop-blur md:block">
-        <div className="absolute inset-x-6 top-8 z-[2] h-px bg-white/22" />
-        <div className="absolute bottom-8 left-6 right-12 z-[2] h-24 border border-white/12" />
+        <div className="node-content h-full w-full">
+          <div className="absolute inset-x-6 top-8 h-px bg-white/22" />
+          <div className="absolute bottom-8 left-6 right-12 h-24 border border-white/12" />
+        </div>
       </div>
 
       <div className="relative z-10 w-full pointer-events-none">
