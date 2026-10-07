@@ -29,7 +29,7 @@ export function WorkScene() {
       });
 
       timeline
-        .to(".case-intro", { y: -24, opacity: 0.42, duration: 0.5, ease: "power1.inOut" }, 0)
+        .to(".case-intro", { y: -24, opacity: 0.62, duration: 0.5, ease: "power1.inOut" }, 0)
         .to(".case-desktop", { clipPath: "inset(0% 0 0 0)", y: 0, scale: 1, duration: 0.9, ease: "power2.inOut" }, 0.08)
         .to(".case-desktop-image", { scale: 1.025, duration: 1.2, ease: "none" }, 0.22)
         .to(".case-desktop", { xPercent: -9, yPercent: -4, scale: 0.9, duration: 0.72, ease: "power2.inOut" }, 1.02)
@@ -58,7 +58,7 @@ export function WorkScene() {
       });
 
       timeline
-        .to(".case-intro", { y: -18, opacity: 0.28, duration: 0.42, ease: "power1.inOut" }, 0)
+        .to(".case-intro", { y: -18, opacity: 0.5, duration: 0.42, ease: "power1.inOut" }, 0)
         .to(".case-desktop", { clipPath: "inset(0% 0 0 0)", y: 0, scale: 1, duration: 0.78, ease: "power2.inOut" }, 0.08)
         .to(".case-desktop", { xPercent: -7, yPercent: -5, scale: 0.92, duration: 0.58, ease: "power2.inOut" }, 0.9)
         .to(".case-mobile", { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: 0.58, ease: "power2.out" }, 1)
@@ -83,14 +83,14 @@ export function WorkScene() {
           <p className="mt-5 max-w-xl text-base leading-7 text-[#c7c2b6] sm:text-lg sm:leading-8">{featuredProject.description}</p>
         </header>
 
-        <div className="case-desktop panel-shadow absolute left-[8%] top-[36%] z-[4] aspect-[16/10] w-[88%] overflow-hidden border border-white/20 bg-[#f1eee5] md:left-[27%] md:top-[17%] md:w-[68%]">
+        <div className="case-desktop panel-shadow absolute left-[8%] top-[36%] z-[4] flex aspect-[3/2] w-[88%] flex-col overflow-hidden border border-white/20 bg-[#11110e] md:left-[27%] md:top-[17%] md:w-[68%]">
           <div className="flex h-7 items-center gap-2 border-b border-black/15 bg-[#e8e2d5] px-3 sm:h-8">
             <span className="h-2 w-2 bg-[#090907]" />
             <span className="h-2 w-2 border border-[#090907]/35" />
             <span className="ml-auto h-px w-24 bg-[#090907]/20" />
           </div>
-          <div className="relative h-[calc(100%-1.75rem)] overflow-hidden sm:h-[calc(100%-2rem)]">
-            <Image src={featuredProject.desktopImage} alt="Yummi Art desktop website" fill sizes="(max-width: 767px) 88vw, 68vw" className="case-desktop-image object-cover" priority />
+          <div className="relative min-h-0 flex-1 overflow-hidden">
+            <Image src={featuredProject.desktopImage} alt="Yummi Art desktop website" fill sizes="(max-width: 767px) 88vw, 68vw" className="case-desktop-image object-contain" priority />
           </div>
         </div>
 
@@ -101,7 +101,7 @@ export function WorkScene() {
         </div>
 
         <div className="case-detail absolute bottom-5 left-0 z-20 w-[72%] bg-[#090907]/92 pt-4 md:bottom-8 md:left-2 md:w-[40%] md:pr-8">
-          <p className="max-w-md text-sm leading-6 text-[#c7c2b6] md:text-base md:leading-7">Responsive storytelling backed by live availability, booking and inquiry flows, admin scheduling, and transactional status emails.</p>
+          <p className="max-w-md text-sm leading-6 text-[#c7c2b6] md:text-base md:leading-7">A responsive experience with live availability, guided booking and inquiry flows, practical admin scheduling, and automatic customer emails.</p>
           <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/15 pt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[#f1eee5]">
             {featuredProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}
           </ul>
@@ -111,7 +111,7 @@ export function WorkScene() {
         </div>
 
         <div className="absolute bottom-0 right-0 h-3 w-24 bg-[var(--acid)]" />
-        <div className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">01 / Case study</div>
+        <div className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">01 / Featured project</div>
       </div>
     </section>
   );
