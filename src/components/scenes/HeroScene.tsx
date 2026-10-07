@@ -33,8 +33,8 @@ export function HeroScene() {
       .to(".hero-system", { xPercent: 10, yPercent: -10, scale: 0.96, duration: 0.68, ease: "power1.inOut" }, "release+=0.20")
       .to(".hero-surface-b", { xPercent: 22, yPercent: 22, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
       .to(".hero-surface-c", { xPercent: -18, yPercent: -12, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
-      .to(".hero-system", { autoAlpha: 0, duration: 0.22, ease: "power1.in" }, "release+=0.54")
-      .to(".hero-title", { autoAlpha: 0, duration: 0.22, ease: "power1.in" }, "release+=0.56");
+      .to(".hero-system", { autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release+=0.54")
+      .to(".hero-title", { autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release+=0.56");
 
     return () => {
       intro.kill();
