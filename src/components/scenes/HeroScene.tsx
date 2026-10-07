@@ -47,7 +47,7 @@ export function HeroScene() {
       <div className="node-grid absolute inset-0 bg-[radial-gradient(circle_at_62%_38%,rgba(111,220,255,0.1),transparent_24rem),radial-gradient(circle_at_20%_70%,rgba(200,255,95,0.1),transparent_22rem)] opacity-80 [--node-grid-size:88px] [--node-line:rgba(241,238,229,0.045)]" />
 
       <div
-        className="hero-node-surface hero-system identity-surface node-field panel-shadow absolute left-[48vw] top-[13svh] z-[4] isolate h-[clamp(15rem,38svh,27rem)] w-[clamp(17rem,36vw,35rem)] border border-white/15 bg-[#f1eee5] p-4 text-[#090907] [--node-color:#090907] [--node-panel-background:#f1eee5] max-sm:left-[47vw] max-sm:top-[17svh] max-sm:h-[13rem] max-sm:w-[15rem]"
+        className="hero-node-surface hero-system identity-surface node-field panel-shadow absolute left-[48vw] top-[13svh] z-[4] isolate h-[clamp(15rem,38svh,27rem)] w-[clamp(17rem,36vw,35rem)] border border-white/15 bg-[#f1eee5] p-4 text-[#090907] [--node-color:#090907] [--node-left:0.5rem] [--node-panel-background:#f1eee5] [--node-top:0.5rem] max-sm:left-[47vw] max-sm:top-[17svh] max-sm:h-[13rem] max-sm:w-[15rem]"
       >
         <div className="absolute -left-4 top-1/3 h-px w-10 bg-[#c8ff5f]" />
         <div className="absolute -bottom-4 right-1/4 h-10 w-px bg-[#c8ff5f]" />
