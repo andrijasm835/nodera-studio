@@ -8,13 +8,6 @@ export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-    window.scrollTo({ left: 0, top: 0 });
-    document.documentElement.scrollLeft = 0;
-    document.body.scrollLeft = 0;
-
     const lenis = new Lenis({
       duration: 1.08,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

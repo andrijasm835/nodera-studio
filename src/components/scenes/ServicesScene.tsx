@@ -20,7 +20,7 @@ export function ServicesScene() {
       return viewportCenter - itemCenter;
     };
 
-    gsap.set(items, { opacity: 0.2 });
+    gsap.set(items, { opacity: 0.32 });
     gsap.set(items[0], { opacity: 1 });
     gsap.set(track, { y: getOffsetFor(items[0]) });
 
@@ -38,7 +38,7 @@ export function ServicesScene() {
 
     items.forEach((item, index) => {
       tl.to(track, { y: () => getOffsetFor(item), duration: 0.55, ease: "power1.inOut" }, index)
-        .to(items, { opacity: 0.2, duration: 0.22, ease: "power1.out" }, index)
+        .to(items, { opacity: 0.32, duration: 0.22, ease: "power1.out" }, index)
         .to(item, { opacity: 1, duration: 0.28, ease: "power1.out" }, index)
         .to(".service-orbit", { rotate: index * 34, scale: 1 + index * 0.025, duration: 0.55, ease: "power1.inOut" }, index);
     });

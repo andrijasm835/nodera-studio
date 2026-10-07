@@ -100,10 +100,6 @@ button:focus-visible {
   clip-path: inset(0 0 0 0);
 }
 
-.node-field {
-  position: relative;
-}
-
 .node-field::before,
 .node-field::after {
   position: absolute;
