@@ -19,20 +19,22 @@ export function HeroScene() {
       scrollTrigger: {
         trigger: scope.current,
         start: "top top",
-        end: "+=120%",
-        scrub: 1,
+        end: "+=90%",
+        scrub: 0.8,
         pin: true,
         anticipatePin: 1,
+        invalidateOnRefresh: true,
       },
     });
     scroll
       .addLabel("release")
-      .to(".hero-kicker", { x: -24, y: -18, opacity: 0, duration: 0.34, ease: "power1.in" }, "release")
-      .to(".hero-line", { xPercent: (index) => -4 - index * 4, yPercent: (index) => -8 - index * 6, opacity: 0.22, duration: 0.72, stagger: 0.045, ease: "power1.inOut" }, "release+=0.06")
-      .to(".hero-system", { xPercent: 18, yPercent: -14, scale: 0.94, opacity: 0.14, duration: 0.72, ease: "power1.inOut" }, "release+=0.08")
-      .to(".hero-surface-b", { xPercent: 28, yPercent: 34, opacity: 0, duration: 0.62, ease: "power1.inOut" }, "release+=0.13")
-      .to(".hero-surface-c", { xPercent: -24, yPercent: -18, opacity: 0, duration: 0.62, ease: "power1.inOut" }, "release+=0.13")
-      .to(".hero-copy", { opacity: 0, y: -24, duration: 0.4, ease: "power1.in" }, "release+=0.28");
+      .to(".hero-kicker, .hero-copy", { y: -18, autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release")
+      .to(".hero-title", { yPercent: -13, scale: 0.955, duration: 0.68, ease: "power1.inOut" }, "release+=0.12")
+      .to(".hero-system", { xPercent: 10, yPercent: -10, scale: 0.96, duration: 0.68, ease: "power1.inOut" }, "release+=0.12")
+      .to(".hero-surface-b", { xPercent: 22, yPercent: 22, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
+      .to(".hero-surface-c", { xPercent: -18, yPercent: -12, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
+      .to(".hero-system", { autoAlpha: 0, duration: 0.22, ease: "power1.in" }, "release+=0.54")
+      .to(".hero-title", { autoAlpha: 0, duration: 0.22, ease: "power1.in" }, "release+=0.56");
 
     return () => {
       intro.kill();
