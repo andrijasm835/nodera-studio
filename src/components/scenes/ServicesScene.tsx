@@ -8,6 +8,7 @@ export function ServicesScene() {
   const scope = useRef<HTMLElement>(null);
 
   useGsapScene(scope, () => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
     const track = scope.current?.querySelector<HTMLElement>(".service-track");
     const viewport = scope.current?.querySelector<HTMLElement>(".service-viewport");
     const items = gsap.utils.toArray<HTMLElement>(".service-item", scope.current ?? undefined);
@@ -20,15 +21,29 @@ export function ServicesScene() {
       return viewportCenter - itemCenter;
     };
 
-    gsap.set(items, { opacity: 0.32 });
+    gsap.set(items, { opacity: 0.38 });
     gsap.set(items[0], { opacity: 1 });
     gsap.set(track, { y: getOffsetFor(items[0]) });
+
+    const entrance = gsap.timeline({
+      scrollTrigger: {
+        trigger: scope.current,
+        start: "top 96%",
+        end: "top 68%",
+        scrub: 0.7,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    entrance
+      .fromTo(".services-heading", { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7, ease: "power2.out" }, 0.12)
+      .fromTo(".service-viewport", { y: 36, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, 0.2);
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: scope.current,
         start: "top top",
-        end: `+=${(items.length - 1) * 82}%`,
+        end: `+=${(items.length - 1) * (isMobile ? 66 : 74)}%`,
         scrub: 1,
         pin: true,
         anticipatePin: 1,
@@ -40,23 +55,26 @@ export function ServicesScene() {
       const itemIndex = transitionIndex + 1;
 
       tl.to(track, { y: () => getOffsetFor(item), duration: 0.55, ease: "power1.inOut" }, transitionIndex)
-        .to(items, { opacity: 0.32, duration: 0.22, ease: "power1.out" }, transitionIndex)
+        .to(items, { opacity: 0.38, duration: 0.22, ease: "power1.out" }, transitionIndex)
         .to(item, { opacity: 1, duration: 0.28, ease: "power1.out" }, transitionIndex)
         .to(".service-orbit", { rotate: itemIndex * 34, scale: 1 + itemIndex * 0.025, duration: 0.55, ease: "power1.inOut" }, transitionIndex);
     });
 
-    return () => tl.kill();
+    return () => {
+      entrance.kill();
+      tl.kill();
+    };
   });
 
   return (
     <section id="services" ref={scope} className="scene overflow-hidden bg-[#f1eee5] px-4 py-24 text-[#090907] sm:px-6 lg:px-8">
-      <div className="grid min-h-[calc(100svh-12rem)] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-        <div>
+      <div className="grid min-h-[calc(100svh-12rem)] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-14">
+        <div className="services-heading">
           <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#697530]">Services</p>
-          <h2 className="mt-5 max-w-[9ch] text-[clamp(3.2rem,8vw,8.6rem)] font-semibold uppercase leading-[0.82] tracking-[-0.045em]">Not a template pipeline.</h2>
+          <h2 className="mt-5 max-w-[9ch] text-[clamp(3.2rem,7.4vw,7.8rem)] font-semibold uppercase leading-[0.84] tracking-[-0.04em]">Not a template pipeline.</h2>
           <p className="mt-7 max-w-md text-lg leading-8 text-black/62">I build new websites, improve existing ones, and handle the technical work that keeps them moving.</p>
         </div>
-        <div className="service-viewport relative h-[70svh] min-h-[520px] overflow-hidden border-l border-black/15 pl-5 sm:pl-8">
+        <div className="service-viewport relative h-[68svh] min-h-[500px] overflow-hidden border-l border-black/15 pl-5 sm:pl-8">
           <div className="service-orbit pointer-events-none absolute right-0 top-10 h-72 w-72 border border-black/15">
             <div className="absolute left-1/2 top-0 h-5 w-5 -translate-x-1/2 -translate-y-1/2 bg-[var(--acid)]" />
           </div>

@@ -142,11 +142,23 @@ button:focus-visible {
     border-color 180ms ease;
 }
 
+.site-navigation.is-light,
+.site-navigation.is-acid {
+  color: #090907;
+  mix-blend-mode: normal;
+}
+
 .site-navigation.is-contact {
   border-bottom: 1px solid rgba(9, 9, 7, 0.12);
   background: rgba(241, 238, 229, 0.94);
   color: #090907;
   mix-blend-mode: normal;
+  backdrop-filter: blur(10px);
+}
+
+.site-navigation.is-acid {
+  border-bottom: 1px solid rgba(9, 9, 7, 0.12);
+  background: rgba(200, 255, 95, 0.92);
   backdrop-filter: blur(10px);
 }
 
@@ -165,5 +177,31 @@ button:focus-visible {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .process-detail:not(:first-child),
+  .case-screen:not(:first-child),
+  .case-mobile-screen:not(:first-child) {
+    display: none;
+  }
+
+  .process-step:not(:first-child) {
+    opacity: 0.26;
+  }
+
+  .service-viewport {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .service-track {
+    padding-block: 2rem !important;
+    transform: none !important;
+  }
+
+  .service-item {
+    min-height: 0 !important;
+    opacity: 1 !important;
   }
 }

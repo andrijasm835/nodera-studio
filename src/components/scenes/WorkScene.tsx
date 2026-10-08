@@ -30,7 +30,7 @@ export function WorkScene() {
         scrollTrigger: {
           trigger: scope.current,
           start: "top top",
-          end: "+=310%",
+          end: "+=282%",
           scrub: 1,
           pin: true,
           anticipatePin: 1,
@@ -39,7 +39,7 @@ export function WorkScene() {
       });
 
       timeline
-        .to(".case-intro", { y: -24, opacity: 0.62, duration: 0.5, ease: "power1.inOut" }, 0)
+        .to(".case-intro", { y: -20, opacity: 0.72, duration: 0.5, ease: "power1.inOut" }, 0)
         .to(".case-desktop", { clipPath: "inset(0% 0 0 0)", y: 0, scale: 1, duration: 0.9, ease: "power2.inOut" }, 0.08)
         .to(desktopScreens[0], { autoAlpha: 0, yPercent: -4, duration: 0.38, ease: "power1.inOut" }, 0.92)
         .to(desktopScreens[1], { autoAlpha: 1, yPercent: 0, duration: 0.46, ease: "power1.inOut" }, 0.98)
@@ -77,7 +77,7 @@ export function WorkScene() {
         scrollTrigger: {
           trigger: scope.current,
           start: "top top",
-          end: "+=260%",
+          end: "+=228%",
           scrub: 0.8,
           pin: true,
           anticipatePin: 1,
@@ -86,7 +86,7 @@ export function WorkScene() {
       });
 
       timeline
-        .to(".case-intro", { y: -18, opacity: 0.5, duration: 0.42, ease: "power1.inOut" }, 0)
+        .to(".case-intro", { y: -16, opacity: 0.62, duration: 0.42, ease: "power1.inOut" }, 0)
         .to(".case-desktop", { clipPath: "inset(0% 0 0 0)", y: 0, scale: 1, duration: 0.78, ease: "power2.inOut" }, 0.08)
         .to(desktopScreens[0], { autoAlpha: 0, yPercent: -4, duration: 0.32, ease: "power1.inOut" }, 0.78)
         .to(desktopScreens[1], { autoAlpha: 1, yPercent: 0, duration: 0.4, ease: "power1.inOut" }, 0.84)
@@ -109,8 +109,8 @@ export function WorkScene() {
   });
 
   return (
-    <section id="work" ref={scope} className="scene node-grid overflow-hidden bg-[#090907] px-4 py-20 [--node-grid-size:96px] [--node-line:rgba(241,238,229,0.04)] sm:px-6 lg:px-8">
-      <div className="relative mx-auto h-[calc(100svh-10rem)] min-h-[620px] max-w-[1600px] overflow-hidden border-y border-white/12">
+    <section id="work" ref={scope} className="scene node-grid overflow-hidden bg-[#090907] px-4 py-16 [--node-grid-size:96px] [--node-line:rgba(241,238,229,0.04)] sm:px-6 sm:py-20 lg:px-8">
+      <div className="relative mx-auto h-[calc(100svh-8rem)] min-h-[620px] max-w-[1600px] overflow-hidden border-y border-white/12 sm:h-[calc(100svh-10rem)]">
         <header className="case-intro absolute left-0 top-6 z-20 max-w-[42rem] sm:top-8 lg:left-2 lg:top-10">
           <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)]">Featured Work</p>
           <h2 className="mt-4 text-[clamp(3.6rem,10vw,9.5rem)] font-semibold uppercase leading-[0.8] tracking-[-0.05em]">{featuredProject.title}</h2>
@@ -121,7 +121,7 @@ export function WorkScene() {
           <p className="mt-5 max-w-xl text-base leading-7 text-[#c7c2b6] sm:text-lg sm:leading-8">{featuredProject.description}</p>
         </header>
 
-        <div className="case-desktop panel-shadow absolute left-[8%] top-[36%] z-[4] flex aspect-[3/2] w-[88%] flex-col overflow-hidden border border-white/20 bg-[#11110e] md:left-[27%] md:top-[17%] md:w-[68%]">
+        <div className="case-desktop panel-shadow absolute left-[4%] top-[35%] z-[4] flex aspect-[16/10] w-[94%] flex-col overflow-hidden border border-white/20 bg-[#11110e] md:left-[25%] md:top-[17%] md:w-[72%]">
           <div className="flex h-7 items-center gap-2 border-b border-black/15 bg-[#e8e2d5] px-3 sm:h-8">
             <span className="h-2 w-2 bg-[#090907]" />
             <span className="h-2 w-2 border border-[#090907]/35" />
@@ -136,17 +136,17 @@ export function WorkScene() {
           </div>
         </div>
 
-        <div className="case-mobile panel-shadow absolute bottom-[7%] right-[5%] z-10 aspect-[390/844] h-[43%] overflow-hidden border border-white/25 bg-[#f1eee5] md:bottom-[8%] md:right-[5%] md:h-[55%]">
+        <div className="case-mobile panel-shadow absolute bottom-[8%] right-[3%] z-10 aspect-[390/844] h-[40%] overflow-hidden border border-white/25 bg-[#f1eee5] md:bottom-[7%] md:right-[3%] md:h-[56%]">
           <div className="relative h-full overflow-hidden">
             {featuredProject.stages.map((stage, index) => (
-              <div className={`case-mobile-screen absolute inset-0 ${index === 1 ? "opacity-100" : "opacity-0"}`} key={stage.id}>
+              <div className={`case-mobile-screen absolute inset-0 ${index === 0 ? "opacity-100" : "opacity-0"}`} key={stage.id}>
                 <Image src={stage.mobileImage} alt={`Yummi Art ${stage.title.toLowerCase()} mobile view`} fill sizes="(max-width: 767px) 35vw, 18vw" className="object-contain" />
               </div>
             ))}
           </div>
         </div>
 
-        <div className="absolute bottom-5 left-0 z-20 h-[9.5rem] w-[72%] bg-[#090907]/92 pt-4 md:bottom-8 md:left-2 md:h-[11rem] md:w-[40%] md:pr-8">
+        <div className="absolute bottom-4 left-0 z-20 h-[9.75rem] w-[76%] bg-[#090907]/94 pt-4 md:bottom-8 md:left-2 md:h-[11rem] md:w-[38%] md:pr-8">
           {featuredProject.stages.map((stage, index) => (
             <div className={`case-stage-copy absolute inset-x-0 top-4 ${index === 0 ? "opacity-100" : "opacity-0"}`} key={stage.id}>
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--acid)]">{stage.id} / {stage.title}</p>

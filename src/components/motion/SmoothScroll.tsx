@@ -17,16 +17,19 @@ export function SmoothScroll() {
     });
 
     const updateScrollTrigger = () => ScrollTrigger.update();
+    const scrollToTop = () => lenis.scrollTo(0, { immediate: true });
     const raf = (time: number) => {
       lenis.raf(time * 1000);
     };
 
     lenis.on("scroll", updateScrollTrigger);
+    window.addEventListener("nodera:scroll-top", scrollToTop);
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.off("scroll", updateScrollTrigger);
+      window.removeEventListener("nodera:scroll-top", scrollToTop);
       gsap.ticker.remove(raf);
       lenis.destroy();
     };
