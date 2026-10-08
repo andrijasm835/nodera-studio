@@ -14,12 +14,19 @@ export function Navigation() {
     const previousBehavior = root.style.scrollBehavior;
 
     root.style.scrollBehavior = "auto";
-    window.scrollTo(0, 0);
+    window.history.replaceState(null, "", "#top");
     window.dispatchEvent(new Event("nodera:scroll-top"));
+    window.scrollTo(0, 0);
     requestAnimationFrame(() => {
-      root.style.scrollBehavior = previousBehavior;
-      window.history.replaceState(null, "", "#top");
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => {
+        root.style.scrollBehavior = previousBehavior;
+      });
     });
+  };
+
+  const focusInquiry = () => {
+    window.dispatchEvent(new Event("nodera:focus-inquiry"));
   };
 
   useGsapScene(scope, () => {
@@ -61,11 +68,11 @@ export function Navigation() {
   }, []);
 
   return (
-    <nav ref={scope} className="site-navigation fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-4 py-4 text-[11px] uppercase tracking-[0.18em] text-[#f1eee5] mix-blend-difference sm:px-6 lg:px-8">
+    <nav ref={scope} aria-label="Primary navigation" className="site-navigation fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-4 py-4 text-[11px] uppercase tracking-[0.18em] text-[#f1eee5] mix-blend-difference sm:px-6 lg:px-8">
       <a href="#top" className="brand-lockup flex items-center gap-2.5 font-semibold" onClick={scrollToTop} aria-label="Nodera Studio — back to top">
         <span className="brand-mark relative block h-7 w-7 shrink-0" aria-hidden="true">
           <Image src="/brand/nodera-emblem-light.png" alt="" fill sizes="28px" className="brand-mark-light object-contain" priority />
-          <Image src="/brand/nodera-emblem.png" alt="" fill sizes="28px" className="brand-mark-dark object-contain" priority />
+          <Image src="/brand/nodera-emblem.png" alt="" fill sizes="28px" className="brand-mark-dark object-contain" />
         </span>
         <span className="wordmark">{siteConfig.shortName}</span>
       </a>
@@ -75,7 +82,7 @@ export function Navigation() {
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
-      <a href={`mailto:${siteConfig.email}`} className="rounded-full border border-current px-3 py-2 text-[10px]">Inquiry</a>
+      <a href="#contact" onClick={focusInquiry} className="rounded-full border border-current px-3 py-2 text-[10px]">Inquiry</a>
     </nav>
   );
 }

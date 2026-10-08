@@ -8,14 +8,17 @@ import { WorkScene } from "@/components/scenes/WorkScene";
 
 export function StudioExperience() {
   return (
-    <main>
+    <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Navigation />
-      <HeroScene />
-      <ServicesScene />
-      <WorkScene />
-      <ExistingSiteScene />
-      <AboutScene />
-      <ContactScene />
-    </main>
+      <main id="main-content">
+        <HeroScene />
+        <ServicesScene />
+        <WorkScene />
+        <ExistingSiteScene />
+        <AboutScene />
+        <ContactScene />
+      </main>
+    </>
   );
 }

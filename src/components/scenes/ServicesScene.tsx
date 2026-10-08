@@ -71,7 +71,7 @@ export function ServicesScene() {
     <section id="services" ref={scope} className="scene overflow-hidden bg-[#f1eee5] px-4 py-24 text-[#090907] sm:px-6 lg:px-8">
       <div className="services-content grid min-h-[calc(100svh-12rem)] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-14">
         <div className="services-heading">
-          <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#697530]">Services</p>
+          <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#64702d]">Services</p>
           <h2 className="mt-5 max-w-[9ch] text-[clamp(3.2rem,7.4vw,7.8rem)] font-semibold uppercase leading-[0.84] tracking-[-0.04em]">Not a template pipeline.</h2>
           <p className="mt-7 max-w-md text-lg leading-8 text-black/62">I build new websites, improve existing ones, and handle the technical work that keeps them moving.</p>
         </div>
@@ -82,7 +82,7 @@ export function ServicesScene() {
           <div className="service-track space-y-20 py-[18svh] will-change-transform">
             {services.map((service) => (
               <article className="service-item grid min-h-[30svh] gap-4 will-change-opacity sm:grid-cols-[6rem_1fr]" key={service.id}>
-                <p className="font-mono text-sm text-black/45">{service.id}</p>
+                <p className="font-mono text-sm text-black/55">{service.id}</p>
                 <div>
                   <h3 className="text-[clamp(2.2rem,6vw,5.8rem)] font-semibold uppercase leading-[0.86] tracking-[-0.04em]">{service.title}</h3>
                   <p className="mt-4 max-w-2xl text-xl leading-8">{service.short}</p>

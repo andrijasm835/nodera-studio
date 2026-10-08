@@ -13,6 +13,7 @@ export function ExistingSiteScene() {
         start: "top 70%",
         end: "bottom 30%",
         scrub: 1,
+        invalidateOnRefresh: true,
       },
     });
     tl.fromTo(".existing-line", { scaleX: 0 }, { scaleX: 1, transformOrigin: "left", stagger: 0.1, ease: "power1.inOut" }, 0)

@@ -25,8 +25,12 @@ export const metadata: Metadata = {
   description:
     "Nodera Studio builds custom websites, e-commerce experiences, ongoing improvements, and technical support for modern businesses.",
   manifest: "/manifest.webmanifest",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
+    url: "/",
     title: "Nodera Studio | Independent Web Development Studio",
     description:
       "Custom websites, e-commerce experiences, ongoing improvements, and technical support for modern businesses.",

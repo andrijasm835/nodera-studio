@@ -3,6 +3,7 @@ export const siteConfig = {
   shortName: "Nodera",
   // Temporary contact values until final public channels are confirmed.
   email: "hello@noderastudio.com",
+  inquirySubject: "Project inquiry",
   instagram: "https://instagram.com/noderastudio",
   instagramLabel: "@noderastudio",
   location: "Serbia / Remote",

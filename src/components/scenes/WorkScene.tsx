@@ -196,7 +196,7 @@ export function WorkScene() {
         </div>
 
         <div className="absolute bottom-0 right-0 h-3 w-24 bg-[var(--acid)]" />
-        <div className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">01 / Featured project</div>
+        <div className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[0.24em] text-white/55">01 / Featured project</div>
       </div>
     </section>
   );

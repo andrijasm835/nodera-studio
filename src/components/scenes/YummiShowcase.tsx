@@ -6,10 +6,10 @@ export function YummiShowcase() {
   return (
     <div className="yummi-demo relative h-full overflow-hidden bg-[#211714] text-[#fff7ef]">
       <section className="yummi-moment yummi-hero absolute inset-0 overflow-hidden bg-[#eee8dc]">
-        <Image src={`${base}/hero-fur.webp`} alt="" fill sizes="72vw" className="yummi-hero-bg object-cover" priority />
+        <Image src={`${base}/hero-fur.webp`} alt="" fill sizes="(max-width: 767px) 94vw, 75vw" className="yummi-hero-bg object-cover" />
         <div className="yummi-hero-lockup absolute inset-0 z-10 flex flex-col items-center justify-center">
-          <Image src={`${base}/hero-logo-red.png`} alt="Yuumi Art" width={2000} height={700} className="h-auto w-[58%]" priority />
-          <Image src={`${base}/hero-by-adriana.png`} alt="By Adriana, makeup studio" width={1200} height={420} className="mt-1 h-auto w-[22%]" priority />
+          <Image src={`${base}/hero-logo-red.png`} alt="Yuumi Art" width={1200} height={400} sizes="(max-width: 767px) 55vw, 44vw" className="h-auto w-[58%]" />
+          <Image src={`${base}/hero-by-adriana.png`} alt="By Adriana, makeup studio" width={800} height={267} sizes="(max-width: 767px) 21vw, 17vw" className="mt-1 h-auto w-[22%]" />
         </div>
         <p className="yummi-hero-prompt absolute inset-x-0 bottom-[7%] z-10 text-center text-[6px] font-bold tracking-[0.4em] text-[#6f1d2a] sm:text-[8px]">SKROLUJ ZA DALJE</p>
       </section>
@@ -79,7 +79,7 @@ export function YummiShowcase() {
       <div className="yummi-static-strip absolute inset-0 hidden grid-cols-[1.15fr_0.85fr] grid-rows-2 gap-1 bg-[#1b1110] p-1">
         <div className="relative row-span-2 overflow-hidden bg-[#eee8dc]">
           <Image src={`${base}/hero-fur.webp`} alt="" fill sizes="48vw" className="object-cover" />
-          <Image src={`${base}/hero-logo-red.png`} alt="Yuumi Art" width={2000} height={700} className="absolute left-1/2 top-1/2 z-10 h-auto w-[68%] -translate-x-1/2 -translate-y-1/2" />
+          <Image src={`${base}/hero-logo-red.png`} alt="Yuumi Art" width={1200} height={400} sizes="34vw" className="absolute left-1/2 top-1/2 z-10 h-auto w-[68%] -translate-x-1/2 -translate-y-1/2" />
         </div>
         <div className="relative overflow-hidden"><Image src={`${base}/detail-eyes.jpg`} alt="Yuumi Art editorial makeup" fill sizes="30vw" className="object-cover object-[50%_38%]" /></div>
         <div className="relative grid place-items-center overflow-hidden bg-[#ead8c2] text-center text-[#6f1d2a]">

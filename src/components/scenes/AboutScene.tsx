@@ -82,7 +82,7 @@ export function AboutScene() {
           </div>
         </div>
 
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 font-mono text-[9px] uppercase tracking-[0.18em] text-[#69665f] sm:gap-5">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 font-mono text-[9px] uppercase tracking-[0.18em] text-[#8f8b82] sm:gap-5">
           <span>01</span>
           <div className="relative h-px bg-white/10">
             <div className="process-progress-fill absolute inset-y-0 left-0 w-full bg-[var(--acid)]" />
