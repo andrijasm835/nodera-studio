@@ -4,8 +4,8 @@ export const siteConfig = {
   // Temporary contact values until final public channels are confirmed.
   email: "hello@noderastudio.com",
   inquirySubject: "Project inquiry",
-  instagram: "https://instagram.com/noderastudio",
-  instagramLabel: "@noderastudio",
+  instagram: "https://instagram.com/nodera.web",
+  instagramLabel: "@nodera.web",
   location: "Serbia / Remote",
 };
 
