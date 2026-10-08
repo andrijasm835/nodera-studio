@@ -201,6 +201,10 @@ button:focus-visible {
     display: grid;
   }
 
+  #work .case-mobile {
+    display: none;
+  }
+
   *,
   *::before,
   *::after {
