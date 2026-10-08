@@ -193,6 +193,14 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .yummi-demo .yummi-moment {
+    display: none;
+  }
+
+  .yummi-demo .yummi-static-strip {
+    display: grid;
+  }
+
   *,
   *::before,
   *::after {

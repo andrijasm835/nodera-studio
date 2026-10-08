@@ -42,8 +42,6 @@ export const featuredProject = {
   description:
     "A custom website and booking experience for a beauty studio, built around strong visuals, smooth motion, and practical day-to-day functionality.",
   technologies: ["Next.js", "GSAP", "Supabase", "Resend"],
-  fullDesktopImage: "/work/yummi/yummi-full-desktop.webp",
-  mobileImage: "/work/yummi/booking-mobile.png",
   milestones: [
     {
       id: "01",
@@ -52,17 +50,17 @@ export const featuredProject = {
     },
     {
       id: "02",
-      title: "Content in Motion",
-      copy: "Services, detailed looks, and artist storytelling unfold as one continuous responsive experience.",
+      title: "Scroll Choreography",
+      copy: "Pinned transformations coordinate imagery, typography, and detail through one continuous sequence.",
     },
     {
       id: "03",
-      title: "Responsive Execution",
-      copy: "The same visual identity and interaction language are carefully adapted across desktop and mobile.",
+      title: "Responsive Experience",
+      copy: "The same visual identity and interaction language adapt carefully across desktop and mobile.",
     },
     {
       id: "04",
-      title: "Booking Experience",
+      title: "Booking & Functionality",
       copy: "A guided flow connects services to live availability, with scheduling and automated communication behind it.",
     },
   ],
