@@ -8,10 +8,6 @@ import { gsap, useGsapScene } from "@/lib/useGsapScene";
 export function ContactScene() {
   const scope = useRef<HTMLElement>(null);
 
-  const focusInquiry = () => {
-    window.dispatchEvent(new Event("nodera:focus-inquiry"));
-  };
-
   useGsapScene(scope, () => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -29,23 +25,29 @@ export function ContactScene() {
   });
 
   return (
-    <section id="contact" ref={scope} className="scene node-grid overflow-hidden bg-[#f1eee5] px-4 pb-8 pt-24 text-[#090907] [--node-grid-size:92px] [--node-line:rgba(9,9,7,0.08)] sm:px-6 sm:pt-28 lg:px-8 lg:pt-32">
+    <section id="contact" ref={scope} className="scene node-grid overflow-hidden bg-[#f1eee5] px-4 pb-8 pt-24 text-[#090907] [--node-grid-size:92px] [--node-line:rgba(9,9,7,0.08)] sm:px-6 sm:pt-28 lg:px-8 lg:pt-28">
       <div className="contact-wipe absolute left-0 top-0 h-2 w-full bg-[#090907]" />
       <div className="contact-rail whitespace-nowrap border-y border-black py-3 font-mono text-xs uppercase tracking-[0.32em]">
         Project inquiry / Websites / E-commerce / Maintenance / Features / Performance /
       </div>
-      <div className="my-12 sm:my-16">
-        <p className="font-mono text-xs uppercase tracking-[0.32em] text-black/55">Contact / {siteConfig.location}</p>
-        <h2 className="contact-title mt-5 max-w-[11ch] text-[clamp(3.8rem,12vw,13.5rem)] font-semibold uppercase leading-[0.8] tracking-[-0.05em]">Let’s build something worth visiting.</h2>
-      </div>
-      <div className="grid border-t border-black/20 lg:grid-cols-[minmax(15rem,0.7fr)_minmax(0,1.3fr)]">
-        <div className="flex flex-col gap-5 py-7 text-base sm:text-lg lg:border-r lg:border-black/20 lg:pr-10">
-          <a href={`mailto:${siteConfig.email}`} className="w-fit">{siteConfig.email}</a>
-          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="w-fit">{siteConfig.instagramLabel}</a>
-          <a href="#contact" onClick={focusInquiry} className="mt-3 w-fit border-b border-black pb-1 font-mono text-xs uppercase tracking-[0.2em]">Start a project inquiry</a>
+      <div className="mt-8 grid gap-10 sm:mt-10 lg:grid-cols-[minmax(0,44fr)_minmax(0,56fr)] lg:gap-0">
+        <div className="border-t border-black pt-6 lg:pr-10 xl:pr-14">
+          <p className="font-mono text-xs uppercase tracking-[0.32em] text-black/55">Contact / {siteConfig.location}</p>
+          <h2 className="contact-title mt-6 max-w-[11ch] text-[clamp(3.6rem,10.5vw,7.5rem)] font-semibold uppercase leading-[0.82] tracking-[-0.05em] lg:text-[clamp(3.6rem,6.2vw,7.5rem)]">Let’s build something worth visiting.</h2>
         </div>
-        <div className="py-7 lg:pl-10">
-          <InquiryForm />
+        <div className="lg:pl-8 xl:pl-12">
+          <div className="border border-black bg-[#f8f6ef] shadow-[8px_8px_0_rgba(9,9,7,0.14)]">
+            <div className="flex h-10 items-center justify-between bg-[#090907] px-4 font-mono text-[9px] uppercase tracking-[0.24em] text-[#f1eee5]">
+              <span>Project inquiry / Nodera</span>
+              <span className="flex items-center gap-2">
+                <span className="h-2 w-2 bg-[#c8ff3d]" aria-hidden="true" />
+                Open / 01
+              </span>
+            </div>
+            <div className="p-5 sm:p-7 lg:p-8">
+              <InquiryForm />
+            </div>
+          </div>
         </div>
       </div>
     </section>

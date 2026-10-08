@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FiInstagram } from "react-icons/fi";
 import { useEffect, useRef, type MouseEvent } from "react";
 import { siteConfig } from "@/content/site";
 import { gsap, useGsapScene } from "@/lib/useGsapScene";
@@ -80,9 +81,20 @@ export function Navigation() {
         <a href="#work">Work</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
       </div>
-      <a href="#contact" onClick={focusInquiry} className="rounded-full border border-current px-3 py-2 text-[10px]">Inquiry</a>
+      <div className="flex items-center gap-3">
+        <a
+          href={siteConfig.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Instagram — ${siteConfig.instagramLabel}`}
+          title={siteConfig.instagramLabel}
+          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-current transition-opacity hover:opacity-60"
+        >
+          <FiInstagram aria-hidden="true" size={15} />
+        </a>
+        <a href="#contact" onClick={focusInquiry} className="rounded-full border border-current px-3 py-2 text-[10px]">Inquiry</a>
+      </div>
     </nav>
   );
 }
