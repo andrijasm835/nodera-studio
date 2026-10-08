@@ -36,7 +36,7 @@ export function ServicesScene() {
     });
 
     entrance
-      .fromTo(".services-content", { y: isMobile ? -88 : -160 }, { y: 0, duration: 0.72, ease: "power1.inOut" }, 0)
+      .fromTo(".services-content", { y: isMobile ? -56 : -92 }, { y: 0, duration: 0.64, ease: "power1.inOut" }, 0)
       .fromTo(".services-heading", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "power2.out" }, 0)
       .fromTo(".service-viewport", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.58, ease: "power2.out" }, 0.06);
 
