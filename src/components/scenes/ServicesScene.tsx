@@ -28,16 +28,17 @@ export function ServicesScene() {
     const entrance = gsap.timeline({
       scrollTrigger: {
         trigger: scope.current,
-        start: "top 96%",
-        end: "top 68%",
-        scrub: 0.7,
+        start: "top bottom",
+        end: isMobile ? "top 60%" : "top 52%",
+        scrub: 0.55,
         invalidateOnRefresh: true,
       },
     });
 
     entrance
-      .fromTo(".services-heading", { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7, ease: "power2.out" }, 0.12)
-      .fromTo(".service-viewport", { y: 36, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, 0.2);
+      .fromTo(".services-content", { y: isMobile ? -88 : -160 }, { y: 0, duration: 0.72, ease: "power1.inOut" }, 0)
+      .fromTo(".services-heading", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "power2.out" }, 0)
+      .fromTo(".service-viewport", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.58, ease: "power2.out" }, 0.06);
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -68,7 +69,7 @@ export function ServicesScene() {
 
   return (
     <section id="services" ref={scope} className="scene overflow-hidden bg-[#f1eee5] px-4 py-24 text-[#090907] sm:px-6 lg:px-8">
-      <div className="grid min-h-[calc(100svh-12rem)] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-14">
+      <div className="services-content grid min-h-[calc(100svh-12rem)] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-14">
         <div className="services-heading">
           <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#697530]">Services</p>
           <h2 className="mt-5 max-w-[9ch] text-[clamp(3.2rem,7.4vw,7.8rem)] font-semibold uppercase leading-[0.84] tracking-[-0.04em]">Not a template pipeline.</h2>

@@ -29,13 +29,20 @@ export function HeroScene() {
     });
     scroll
       .addLabel("release")
-      .to(".hero-kicker, .hero-copy", { y: -18, autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release")
-      .to(".hero-title", { yPercent: -13, scale: 0.955, duration: 0.68, ease: "power1.inOut" }, "release+=0.12")
-      .to(".hero-system", { xPercent: 10, yPercent: -10, scale: 0.96, duration: 0.58, ease: "power1.inOut" }, "release+=0.20")
-      .to(".hero-surface-b", { xPercent: 22, yPercent: 22, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
-      .to(".hero-surface-c", { xPercent: -18, yPercent: -12, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
-      .to(".hero-title", { autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release+=0.56")
-      .to(".hero-system-detail", { autoAlpha: 0, duration: 0.2, ease: "power1.in" }, "release+=0.76")
+      .to(".hero-kicker, .hero-copy", { y: -16, autoAlpha: 0, duration: 0.24, ease: "power1.in" }, "release")
+      .to(".hero-title", { yPercent: -13, scale: 0.955, duration: 0.64, ease: "power1.inOut" }, "release+=0.08")
+      .to(".hero-system", { xPercent: 6, yPercent: -6, scale: 0.985, duration: 0.48, ease: "power1.inOut" }, "release+=0.16")
+      .to(".hero-surface-b", { xPercent: 18, yPercent: 18, autoAlpha: 0, duration: 0.34, ease: "power1.inOut" }, "release+=0.18")
+      .to(".hero-surface-c", { xPercent: -14, yPercent: -10, autoAlpha: 0, duration: 0.34, ease: "power1.inOut" }, "release+=0.18")
+      .to(".hero-title", { autoAlpha: 0, duration: 0.24, ease: "power1.in" }, "release+=0.44")
+      .to(
+        ".hero-system-geometry",
+        isMobile
+          ? { autoAlpha: 0, duration: 0.18, ease: "power1.in" }
+          : { xPercent: -4, yPercent: 4, scale: 0.98, duration: 0.34, ease: "power1.inOut" },
+        "release+=0.56",
+      )
+      .to(".hero-system-detail", { autoAlpha: 0, duration: isMobile ? 0.18 : 0.3, ease: "power1.in" }, "release+=0.60")
       .to(
         ".hero-system",
         {
@@ -48,10 +55,11 @@ export function HeroScene() {
           scale: 1,
           borderColor: "rgba(241,238,229,0)",
           boxShadow: "0 0 0 rgba(0,0,0,0)",
-          duration: isMobile ? 0.3 : 0.36,
-          ease: "power2.inOut",
+          "--node-color": "rgba(9,9,7,0)",
+          duration: isMobile ? 0.3 : 0.42,
+          ease: "power1.inOut",
         },
-        "release+=0.84",
+        "release+=0.62",
       );
 
     return () => {
@@ -69,7 +77,7 @@ export function HeroScene() {
       >
         <div className="hero-system-detail absolute -left-4 top-1/3 h-px w-10 bg-[#c8ff5f]" />
         <div className="hero-system-detail absolute -bottom-4 right-1/4 h-10 w-px bg-[#c8ff5f]" />
-        <div className="hero-system-detail node-content grid h-full grid-rows-[0.6fr_1fr_0.58fr] gap-3">
+        <div className="hero-system-detail hero-system-geometry node-content grid h-full grid-rows-[0.6fr_1fr_0.58fr] gap-3">
           <div className="border-b border-black/18">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-55"><span className="node-copy">Nodera / System</span></p>
           </div>
