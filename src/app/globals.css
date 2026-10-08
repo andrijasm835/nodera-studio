@@ -88,6 +88,29 @@ button:focus-visible {
   text-indent: 0.34em;
 }
 
+.brand-mark-light,
+.brand-mark-dark {
+  transition: opacity 180ms ease;
+}
+
+.brand-mark-light {
+  opacity: 1;
+}
+
+.brand-mark-dark {
+  opacity: 0;
+}
+
+.site-navigation.is-light .brand-mark-light,
+.site-navigation.is-acid .brand-mark-light {
+  opacity: 0;
+}
+
+.site-navigation.is-light .brand-mark-dark,
+.site-navigation.is-acid .brand-mark-dark {
+  opacity: 1;
+}
+
 .text-balance {
   text-wrap: balance;
 }
