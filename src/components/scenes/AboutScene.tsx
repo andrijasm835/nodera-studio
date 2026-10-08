@@ -24,7 +24,7 @@ export function AboutScene() {
 
     gsap.set(steps, { opacity: 0.26 });
     gsap.set(details, { autoAlpha: 0, y: 16 });
-    gsap.set(markers, { opacity: 0.28, scale: 0.72 });
+    gsap.set(markers, { opacity: 0.18, scale: 0.65 });
     gsap.set(".process-progress-fill", { scaleX: 0, transformOrigin: "left center" });
     gsap.set(".process-progress-node", { left: "0%" });
     gsap.set(steps[0], { opacity: 1 });
@@ -55,7 +55,7 @@ export function AboutScene() {
         .fromTo(details[stepIndex], { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.38, ease: "power2.out", immediateRender: false }, transitionIndex + 0.1)
         .to(".process-progress-fill", { scaleX: progress, duration: 0.58, ease: "power1.inOut" }, transitionIndex)
         .to(".process-progress-node", { left: `${progress * 100}%`, duration: 0.58, ease: "power1.inOut" }, transitionIndex)
-        .to(markers, { opacity: 0.28, scale: 0.72, duration: 0.22 }, transitionIndex)
+        .to(markers, { opacity: 0.18, scale: 0.65, duration: 0.22 }, transitionIndex)
         .to(markers[stepIndex], { opacity: 1, scale: 1, duration: 0.28 }, transitionIndex + 0.12);
     });
 
@@ -75,20 +75,20 @@ export function AboutScene() {
             {process.map((step) => (
               <article className="process-detail absolute inset-y-0 left-5 right-0 max-w-2xl sm:left-7" key={step.id}>
                 <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#aaa59a] sm:text-xs">Current step / {step.id}</p>
-                <h3 className="mt-2 text-[clamp(2.75rem,6.6vw,6.4rem)] font-semibold uppercase leading-[0.84] tracking-[-0.04em]">{step.title}</h3>
+                <h3 className="mt-2 text-[clamp(2.45rem,5.8vw,5.6rem)] font-semibold uppercase leading-[0.86] tracking-[-0.035em]">{step.title}</h3>
                 <p className="mt-3 max-w-xl text-base leading-7 text-[#aaa59a] sm:text-lg sm:leading-8">{step.text}</p>
               </article>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#77736a] sm:gap-5">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 font-mono text-[9px] uppercase tracking-[0.18em] text-[#69665f] sm:gap-5">
           <span>01</span>
-          <div className="relative h-px bg-white/15">
+          <div className="relative h-px bg-white/10">
             <div className="process-progress-fill absolute inset-y-0 left-0 w-full bg-[var(--acid)]" />
-            <div className="process-progress-node absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 bg-[var(--acid)]" />
+            <div className="process-progress-node absolute top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-[var(--acid)]" />
             <div className="absolute inset-0 flex items-center justify-between">
-              {process.map((step) => <span className="process-marker h-1.5 w-1.5 bg-[#f1eee5]" key={step.id} />)}
+              {process.map((step) => <span className="process-marker h-1 w-1 bg-[#f1eee5]" key={step.id} />)}
             </div>
           </div>
           <span>06</span>
@@ -102,7 +102,7 @@ export function AboutScene() {
           </div>
         </div>
 
-        <div className="process-scope-line grid gap-2 border-l border-white/15 pl-4 sm:grid-cols-[10rem_1fr] sm:items-start sm:gap-6 sm:pl-5">
+        <div className="process-scope-line -mt-2 grid gap-2 border-l border-white/15 pl-4 sm:-mt-3 sm:grid-cols-[10rem_1fr] sm:items-start sm:gap-6 sm:pl-5">
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--acid)]">Flexible scope</p>
           <p className="max-w-2xl text-base leading-7 text-[#aaa59a] sm:text-lg sm:leading-8">New builds, existing websites, one feature, or ongoing support. I can join the project wherever the work starts.</p>
         </div>
