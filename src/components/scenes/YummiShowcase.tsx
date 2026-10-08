@@ -43,19 +43,19 @@ export function YummiShowcase() {
       <section className="yummi-moment yummi-details absolute inset-0 overflow-hidden bg-[#211714]">
         <div className="yummi-detail-words absolute inset-0 font-serif text-[clamp(2rem,10vw,8rem)] leading-[0.78] text-[#fff7ef]/25">
           <span className="yummi-detail-word-1 absolute left-[5%] top-[12%]">BEAUTY</span>
-          <span className="yummi-detail-word-2 absolute right-[5%] top-[39%]">IS IN</span>
-          <span className="yummi-detail-word-3 absolute bottom-[10%] left-[17%]">THE DETAILS.</span>
+          <span className="yummi-detail-word-2 absolute right-[7%] top-[40%]">IS IN</span>
+          <span className="yummi-detail-word-3 absolute bottom-[9%] left-[20%]">THE DETAILS.</span>
         </div>
-        <div className="yummi-detail-a absolute left-[5%] top-[14%] h-[38%] w-[42%] overflow-hidden will-change-[clip-path,transform]">
+        <div className="yummi-detail-a absolute left-[5%] top-[12%] h-[52%] w-[48%] overflow-hidden will-change-[clip-path,transform]">
           <Image src={`${base}/detail-lips.jpg`} alt="Yuumi Art editorial makeup detail" fill sizes="32vw" className="yummi-detail-image object-cover object-[52%_32%]" />
         </div>
-        <div className="yummi-detail-b absolute right-[7%] top-[6%] h-[64%] w-[28%] overflow-hidden will-change-[clip-path,transform,opacity]">
+        <div className="yummi-detail-b absolute right-[7%] top-[8%] h-[48%] w-[22%] overflow-hidden will-change-[clip-path,transform,opacity]">
           <Image src={`${base}/detail-eyes.jpg`} alt="Yuumi Art eye makeup detail" fill sizes="24vw" className="yummi-detail-image object-cover object-[50%_38%]" />
         </div>
-        <div className="yummi-detail-c absolute bottom-[7%] left-[32%] h-[42%] w-[34%] overflow-hidden will-change-[clip-path,transform,opacity]">
+        <div className="yummi-detail-c absolute bottom-[8%] left-[39%] h-[32%] w-[28%] overflow-hidden will-change-[clip-path,transform,opacity]">
           <Image src={`${base}/detail-texture.jpg`} alt="Yuumi Art beauty texture detail" fill sizes="28vw" className="yummi-detail-image object-cover object-[50%_31%]" />
         </div>
-        <p className="yummi-detail-front absolute left-[9%] top-[43%] z-20 font-serif text-[clamp(2rem,8vw,7rem)] leading-none mix-blend-difference">DETAILS.</p>
+        <p className="yummi-detail-front absolute left-[10%] top-[48%] z-20 font-serif text-[clamp(2rem,8vw,7rem)] leading-none mix-blend-difference">DETAILS.</p>
       </section>
 
       <section className="yummi-moment yummi-booking absolute inset-0 overflow-hidden bg-[#1b1110]">
