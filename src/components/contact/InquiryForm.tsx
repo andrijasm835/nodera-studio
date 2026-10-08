@@ -169,8 +169,8 @@ export function InquiryForm() {
         </Field>
       </div>
 
-      <Field label="Tell me about the project" name="message" error={fieldErrors.message} required>
-        <textarea id="inquiry-message" name="message" value={values.message} onChange={(event) => updateValue("message", event.target.value)} className={`${controlClass} min-h-36 resize-y leading-7`} maxLength={4000} placeholder="Tell me what you’re building, what already exists, and what you’d like to improve." required aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? "inquiry-message-error" : undefined} />
+      <Field label="Tell me about the project" name="message" error={fieldErrors.message}>
+        <textarea id="inquiry-message" name="message" value={values.message} onChange={(event) => updateValue("message", event.target.value)} className={`${controlClass} min-h-36 resize-y leading-7`} maxLength={4000} placeholder="Tell me what you’re building, what already exists, and what you’d like to improve." aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? "inquiry-message-error" : undefined} />
       </Field>
 
       <div className="flex flex-col gap-4 border-t border-black/20 py-6 sm:flex-row sm:items-center sm:justify-between">

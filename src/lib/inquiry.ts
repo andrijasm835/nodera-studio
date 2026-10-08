@@ -23,7 +23,7 @@ export const inquirySchema = z.object({
   email: z.string().trim().min(1, "Please enter your email.").email("Please enter a valid email address.").max(254, "Email must be 254 characters or fewer."),
   company: z.string().trim().max(120, "Company or brand must be 120 characters or fewer.").optional().default(""),
   inquiryType: z.enum(inquiryTypes, { message: "Please choose what you need." }),
-  message: z.string().trim().min(20, "Please share at least a little context about the project.").max(4000, "Project details must be 4,000 characters or fewer."),
+  message: z.string().trim().max(4000, "Project details must be 4,000 characters or fewer.").optional().default(""),
   website: z.string().max(200).optional().default(""),
   requestId: z.string().uuid(),
 });

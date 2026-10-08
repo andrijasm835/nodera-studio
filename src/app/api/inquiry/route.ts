@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
     `Submitted: ${submittedAt}`,
     "",
     "Project details:",
-    message,
+    message || "Not provided",
   ].join("\n");
   const html = `
     <h1 style="font-family:Arial,sans-serif;font-size:24px">New Nodera Studio inquiry</h1>
@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
       <tr><td style="padding:4px 20px 4px 0"><strong>Submitted</strong></td><td>${escapeHtml(submittedAt)}</td></tr>
     </table>
     <h2 style="font-family:Arial,sans-serif;font-size:18px;margin-top:24px">Project details</h2>
-    <p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.7;white-space:pre-wrap">${escapeHtml(message)}</p>
+    <p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.7;white-space:pre-wrap">${escapeHtml(message || "Not provided")}</p>
   `;
 
   try {
