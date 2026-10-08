@@ -7,6 +7,7 @@ export function HeroScene() {
   const scope = useRef<HTMLElement>(null);
 
   useGsapScene(scope, () => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
     const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
     intro
       .fromTo(".hero-kicker", { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.65 })
@@ -19,7 +20,7 @@ export function HeroScene() {
       scrollTrigger: {
         trigger: scope.current,
         start: "top top",
-        end: "+=90%",
+        end: isMobile ? "+=72%" : "+=96%",
         scrub: 0.8,
         pin: true,
         anticipatePin: 1,
@@ -30,11 +31,28 @@ export function HeroScene() {
       .addLabel("release")
       .to(".hero-kicker, .hero-copy", { y: -18, autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release")
       .to(".hero-title", { yPercent: -13, scale: 0.955, duration: 0.68, ease: "power1.inOut" }, "release+=0.12")
-      .to(".hero-system", { xPercent: 10, yPercent: -10, scale: 0.96, duration: 0.68, ease: "power1.inOut" }, "release+=0.20")
+      .to(".hero-system", { xPercent: 10, yPercent: -10, scale: 0.96, duration: 0.58, ease: "power1.inOut" }, "release+=0.20")
       .to(".hero-surface-b", { xPercent: 22, yPercent: 22, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
       .to(".hero-surface-c", { xPercent: -18, yPercent: -12, autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "release+=0.25")
-      .to(".hero-system", { autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release+=0.54")
-      .to(".hero-title", { autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release+=0.56");
+      .to(".hero-title", { autoAlpha: 0, duration: 0.28, ease: "power1.in" }, "release+=0.56")
+      .to(".hero-system-detail", { autoAlpha: 0, duration: 0.2, ease: "power1.in" }, "release+=0.76")
+      .to(
+        ".hero-system",
+        {
+          left: 0,
+          top: 0,
+          width: "100vw",
+          height: "100svh",
+          xPercent: 0,
+          yPercent: 0,
+          scale: 1,
+          borderColor: "rgba(241,238,229,0)",
+          boxShadow: "0 0 0 rgba(0,0,0,0)",
+          duration: isMobile ? 0.3 : 0.36,
+          ease: "power2.inOut",
+        },
+        "release+=0.84",
+      );
 
     return () => {
       intro.kill();
@@ -49,9 +67,9 @@ export function HeroScene() {
       <div
         className="hero-node-surface hero-system identity-surface node-field panel-shadow absolute left-[48vw] top-[13svh] z-[4] isolate h-[clamp(15rem,38svh,27rem)] w-[clamp(17rem,36vw,35rem)] border border-white/15 bg-[#f1eee5] p-4 text-[#090907] [--node-color:#090907] [--node-left:0.5rem] [--node-panel-background:#f1eee5] [--node-top:0.5rem] max-sm:left-[47vw] max-sm:top-[17svh] max-sm:h-[13rem] max-sm:w-[15rem]"
       >
-        <div className="absolute -left-4 top-1/3 h-px w-10 bg-[#c8ff5f]" />
-        <div className="absolute -bottom-4 right-1/4 h-10 w-px bg-[#c8ff5f]" />
-        <div className="node-content grid h-full grid-rows-[0.6fr_1fr_0.58fr] gap-3">
+        <div className="hero-system-detail absolute -left-4 top-1/3 h-px w-10 bg-[#c8ff5f]" />
+        <div className="hero-system-detail absolute -bottom-4 right-1/4 h-10 w-px bg-[#c8ff5f]" />
+        <div className="hero-system-detail node-content grid h-full grid-rows-[0.6fr_1fr_0.58fr] gap-3">
           <div className="border-b border-black/18">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-55"><span className="node-copy">Nodera / System</span></p>
           </div>
