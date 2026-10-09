@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Nodera Studio",
     short_name: "Nodera",
-    description: "Independent web development studio for custom websites, e-commerce, and frontend systems.",
+    description: "Nezavisni web development studio za custom sajtove, e-commerce i frontend sisteme.",
     start_url: "/",
     display: "standalone",
     background_color: "#090907",

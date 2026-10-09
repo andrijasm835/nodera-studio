@@ -1,10 +1,14 @@
 "use client";
 
 import { useRef } from "react";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
+import { siteContent } from "@/content/site";
 import { gsap, useGsapScene } from "@/lib/useGsapScene";
 
 export function HeroScene() {
   const scope = useRef<HTMLElement>(null);
+  const { language } = useLanguage();
+  const content = siteContent[language].hero;
 
   useGsapScene(scope, () => {
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
@@ -20,8 +24,8 @@ export function HeroScene() {
       scrollTrigger: {
         trigger: scope.current,
         start: "top top",
-        end: isMobile ? "+=72%" : "+=96%",
-        scrub: 0.8,
+        end: isMobile ? "+=88%" : "+=96%",
+        scrub: isMobile ? 0.9 : 0.8,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
@@ -79,7 +83,7 @@ export function HeroScene() {
         <div className="hero-system-detail absolute -bottom-4 right-1/4 h-10 w-px bg-[#c8ff5f]" />
         <div className="hero-system-detail hero-system-geometry node-content grid h-full grid-rows-[0.6fr_1fr_0.58fr] gap-3">
           <div className="border-b border-black/18">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-55"><span className="node-copy">Nodera / System</span></p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-55"><span className="node-copy">{content.system}</span></p>
           </div>
           <div className="grid grid-cols-[1.25fr_0.75fr] gap-3">
             <div className="bg-[#090907]" />
@@ -94,7 +98,7 @@ export function HeroScene() {
       </div>
 
       <div className="hero-node-surface hero-surface hero-surface-b node-field absolute bottom-[20svh] right-[13vw] z-[5] isolate h-28 w-56 border border-[var(--acid)] bg-[#c8ff5f] p-4 text-[#090907] [--node-color:#090907] [--node-panel-background:#c8ff5f] max-sm:hidden">
-        <p className="node-content font-mono text-xs uppercase tracking-[0.18em]"><span className="node-copy">Designed to launch clean. Built to keep moving.</span></p>
+        <p className="node-content font-mono text-xs uppercase tracking-[0.18em]"><span className="node-copy">{content.surface}</span></p>
       </div>
 
       <div className="hero-node-surface hero-surface hero-surface-c node-field absolute left-[7vw] top-[18svh] z-[3] hidden isolate h-[34svh] w-[18vw] border border-white/10 bg-white/[0.035] [--node-color:#c8ff5f] backdrop-blur md:block">
@@ -105,15 +109,15 @@ export function HeroScene() {
       </div>
 
       <div className="relative z-10 w-full pointer-events-none">
-        <p className="hero-kicker mb-5 max-w-[20rem] font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)] max-sm:max-w-[17rem] max-sm:tracking-[0.22em]">Independent Web Development Studio</p>
+        <p className="hero-kicker mb-5 max-w-[20rem] font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)] max-sm:max-w-[17rem] max-sm:tracking-[0.22em]">{content.kicker}</p>
         <h1 className="hero-title max-w-[14ch] overflow-hidden text-[clamp(4.25rem,12vw,12rem)] font-semibold uppercase leading-[0.78] tracking-[-0.04em] max-sm:text-[clamp(3rem,14vw,3.65rem)]">
-          <span className="block overflow-hidden"><span className="hero-line block">Websites</span></span>
-          <span className="block overflow-hidden"><span className="hero-line block">built to</span></span>
-          <span className="block overflow-hidden font-serif font-normal italic normal-case tracking-[-0.03em]"><span className="hero-line block">perform.</span></span>
+          <span className="block overflow-hidden"><span className="hero-line block">{content.lines[0]}</span></span>
+          <span className="block overflow-hidden"><span className="hero-line block">{content.lines[1]}</span></span>
+          <span className="block overflow-hidden font-serif font-normal italic normal-case tracking-[-0.03em]"><span className="hero-line block">{content.lines[2]}</span></span>
         </h1>
         <div className="hero-copy mt-8 grid gap-5 border-t border-white/15 pt-5 text-sm text-[#c7c2b6] sm:grid-cols-[1fr_1.1fr] lg:ml-auto lg:max-w-3xl">
           <p className="font-mono uppercase tracking-[0.18em] text-[#f1eee5]">Nodera Studio</p>
-          <p className="max-w-xl text-base leading-7">Custom websites, e-commerce builds, feature work, and support for businesses that need the web to be faster, clearer, and easier to use.</p>
+          <p className="max-w-xl text-base leading-7">{content.copy}</p>
         </div>
       </div>
     </section>

@@ -2,12 +2,16 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { featuredProject } from "@/content/site";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
+import { siteContent } from "@/content/site";
 import { gsap, useGsapScene } from "@/lib/useGsapScene";
 import { YummiShowcase } from "@/components/scenes/YummiShowcase";
 
 export function WorkScene() {
   const scope = useRef<HTMLElement>(null);
+  const { language } = useLanguage();
+  const content = siteContent[language].work;
+  const featuredProject = content.project;
 
   useGsapScene(scope, () => {
     const mm = gsap.matchMedia();
@@ -51,8 +55,8 @@ export function WorkScene() {
         scrollTrigger: {
           trigger: scope.current,
           start: "top top",
-          end: isMobile ? "+=220%" : "+=380%",
-          scrub: isMobile ? 0.8 : 1,
+          end: isMobile ? "+=300%" : "+=380%",
+          scrub: isMobile ? 1.05 : 1,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -151,10 +155,10 @@ export function WorkScene() {
   });
 
   return (
-    <section id="work" ref={scope} className="scene node-grid overflow-hidden bg-[#090907] px-4 py-16 [--node-grid-size:96px] [--node-line:rgba(241,238,229,0.04)] sm:px-6 sm:py-20 lg:px-8">
-      <div className="relative mx-auto h-[calc(100svh-8rem)] min-h-[620px] max-w-[1600px] overflow-hidden border-y border-white/12 sm:h-[calc(100svh-10rem)]">
+    <section id="work" ref={scope} className="scene node-grid overflow-hidden bg-[#090907] px-4 py-10 [--node-grid-size:96px] [--node-line:rgba(241,238,229,0.04)] sm:px-6 md:py-20 lg:px-8">
+      <div className="relative mx-auto h-[calc(100svh-5rem)] min-h-[540px] max-w-[1600px] overflow-hidden border-y border-white/12 md:h-[calc(100svh-10rem)] md:min-h-[620px]">
         <header className="case-intro absolute left-0 top-6 z-20 max-w-[42rem] sm:top-8 lg:left-2 lg:top-10">
-          <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)]">Featured Work</p>
+          <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)]">{content.label}</p>
           <h2 className="mt-4 text-[clamp(3.6rem,10vw,9.5rem)] font-semibold uppercase leading-[0.8] tracking-[-0.05em]">{featuredProject.title}</h2>
           <div className="mt-5 flex gap-5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#aaa59a] sm:text-xs">
             <span>{featuredProject.type}</span>
@@ -175,7 +179,7 @@ export function WorkScene() {
         </div>
 
         <div className="case-mobile panel-shadow absolute bottom-[8%] right-[3%] z-10 aspect-[390/844] h-[40%] overflow-hidden border border-white/25 bg-[#201614] md:bottom-[7%] md:right-[3%] md:h-[50%]">
-          <Image src="/work/yummi/demo/transform-final.jpg" alt="Yummi Art responsive makeup experience" fill sizes="(max-width: 767px) 38vw, 18vw" className="case-mobile-photo object-cover object-[50%_32%]" />
+          <Image src="/work/yummi/demo/transform-final.jpg" alt={content.mobileAlt} fill sizes="(max-width: 767px) 38vw, 18vw" className="case-mobile-photo object-cover object-[50%_32%]" />
           <div className="case-mobile-booking absolute inset-x-[8%] bottom-[7%] z-10 border border-[#c5a56d]/70 bg-[#fff8ef]/95 px-2 py-3 text-center text-[#6f1d2a] shadow-lg">
             <p className="font-serif text-[clamp(0.75rem,2.2vw,1.4rem)] leading-[0.9]">ZAKAŽI SVOJ TERMIN</p>
             <div className="mt-2 h-px bg-[#6f1d2a]/25" />
@@ -196,7 +200,7 @@ export function WorkScene() {
         </div>
 
         <div className="absolute bottom-0 right-0 h-3 w-24 bg-[var(--acid)]" />
-        <div className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[0.24em] text-white/55">01 / Featured project</div>
+        <div className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[0.24em] text-white/55">01 / {content.featured}</div>
       </div>
     </section>
   );

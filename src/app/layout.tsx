@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { LanguageProvider } from "@/components/i18n/LanguageProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,9 +22,9 @@ const display = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://noderastudio.com"),
   applicationName: "Nodera Studio",
-  title: "Nodera Studio | Independent Web Development Studio",
+  title: "Nodera Studio | Web development studio",
   description:
-    "Nodera Studio builds custom websites, e-commerce experiences, ongoing improvements, and technical support for modern businesses.",
+    "Nodera Studio izrađuje custom web sajtove, e-commerce iskustva i digitalne proizvode za savremene biznise.",
   manifest: "/manifest.webmanifest",
   alternates: {
     canonical: "/",
@@ -31,16 +32,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    title: "Nodera Studio | Independent Web Development Studio",
+    title: "Nodera Studio | Web development studio",
     description:
-      "Custom websites, e-commerce experiences, ongoing improvements, and technical support for modern businesses.",
+      "Custom web sajtovi, e-commerce iskustva i tehnička podrška za savremene biznise.",
     siteName: "Nodera Studio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nodera Studio | Independent Web Development Studio",
+    title: "Nodera Studio | Web development studio",
     description:
-      "Custom websites, e-commerce experiences, ongoing improvements, and technical support for modern businesses.",
+      "Custom web sajtovi, e-commerce iskustva i tehnička podrška za savremene biznise.",
   },
 };
 
@@ -55,12 +56,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="sr" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${display.variable}`}
         suppressHydrationWarning
       >
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

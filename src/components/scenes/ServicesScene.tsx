@@ -1,11 +1,14 @@
 "use client";
 
 import { useRef } from "react";
-import { services } from "@/content/site";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
+import { siteContent } from "@/content/site";
 import { gsap, useGsapScene } from "@/lib/useGsapScene";
 
 export function ServicesScene() {
   const scope = useRef<HTMLElement>(null);
+  const { language } = useLanguage();
+  const { services, servicesIntro } = siteContent[language];
 
   useGsapScene(scope, () => {
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
@@ -44,8 +47,8 @@ export function ServicesScene() {
       scrollTrigger: {
         trigger: scope.current,
         start: "top top",
-        end: `+=${(items.length - 1) * (isMobile ? 66 : 74)}%`,
-        scrub: 1,
+        end: `+=${(items.length - 1) * (isMobile ? 78 : 74)}%`,
+        scrub: isMobile ? 1.05 : 1,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
@@ -68,25 +71,25 @@ export function ServicesScene() {
   });
 
   return (
-    <section id="services" ref={scope} className="scene overflow-hidden bg-[#f1eee5] px-4 py-24 text-[#090907] sm:px-6 lg:px-8">
-      <div className="services-content grid min-h-[calc(100svh-12rem)] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-14">
+    <section id="services" ref={scope} className="scene overflow-hidden bg-[#f1eee5] px-4 py-10 text-[#090907] sm:px-6 md:py-24 lg:px-8">
+      <div className="services-content grid min-h-[calc(100svh-5rem)] content-center gap-5 md:min-h-[calc(100svh-12rem)] md:gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-14">
         <div className="services-heading">
-          <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#64702d]">Services</p>
-          <h2 className="mt-5 max-w-[9ch] text-[clamp(3.2rem,7.4vw,7.8rem)] font-semibold uppercase leading-[0.84] tracking-[-0.04em]">Not a template pipeline.</h2>
-          <p className="mt-7 max-w-md text-lg leading-8 text-black/62">I build new websites, improve existing ones, and handle the technical work that keeps them moving.</p>
+          <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#64702d]">{servicesIntro.label}</p>
+          <h2 className="mt-4 max-w-[10ch] text-[clamp(2.65rem,12vw,3.2rem)] font-semibold uppercase leading-[0.84] tracking-[-0.04em] md:mt-5 md:max-w-[9ch] md:text-[clamp(3.2rem,7.4vw,7.8rem)]">{servicesIntro.title}</h2>
+          <p className="mt-4 max-w-md text-base leading-6 text-black/62 md:mt-7 md:text-lg md:leading-8">{servicesIntro.copy}</p>
         </div>
-        <div className="service-viewport relative h-[68svh] min-h-[500px] overflow-hidden border-l border-black/15 pl-5 sm:pl-8">
+        <div className="service-viewport relative h-[52svh] min-h-[320px] overflow-hidden border-l border-black/15 pl-5 md:h-[68svh] md:min-h-[500px] md:pl-8">
           <div className="service-orbit pointer-events-none absolute right-0 top-10 h-72 w-72 border border-black/15">
             <div className="absolute left-1/2 top-0 h-5 w-5 -translate-x-1/2 -translate-y-1/2 bg-[var(--acid)]" />
           </div>
-          <div className="service-track space-y-20 py-[18svh] will-change-transform">
+          <div className="service-track space-y-14 py-[14svh] will-change-transform md:space-y-20 md:py-[18svh]">
             {services.map((service) => (
-              <article className="service-item grid min-h-[30svh] gap-4 will-change-opacity sm:grid-cols-[6rem_1fr]" key={service.id}>
+              <article className="service-item grid min-h-[24svh] gap-3 will-change-opacity md:min-h-[30svh] md:grid-cols-[6rem_1fr] md:gap-4" key={service.id}>
                 <p className="font-mono text-sm text-black/55">{service.id}</p>
                 <div>
-                  <h3 className="text-[clamp(2.2rem,6vw,5.8rem)] font-semibold uppercase leading-[0.86] tracking-[-0.04em]">{service.title}</h3>
-                  <p className="mt-4 max-w-2xl text-xl leading-8">{service.short}</p>
-                  <p className="mt-3 max-w-xl text-base leading-7 text-black/58">{service.detail}</p>
+                  <h3 className="text-[clamp(2rem,10vw,2.75rem)] font-semibold uppercase leading-[0.86] tracking-[-0.04em] md:text-[clamp(2.2rem,6vw,5.8rem)]">{service.title}</h3>
+                  <p className="mt-3 max-w-2xl text-lg leading-7 md:mt-4 md:text-xl md:leading-8">{service.short}</p>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-black/58 md:mt-3 md:text-base md:leading-7">{service.detail}</p>
                 </div>
               </article>
             ))}

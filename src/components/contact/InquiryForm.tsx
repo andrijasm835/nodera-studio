@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { inquirySchema, inquiryTypeLabels, inquiryTypes, type InquiryField } from "@/lib/inquiry";
-import { siteConfig } from "@/content/site";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
+import { siteConfig, siteContent } from "@/content/site";
+import { inquirySchema, inquiryTypes, type InquiryField } from "@/lib/inquiry";
 
 type FormValues = Record<InquiryField, string> & { website: string };
 type FieldErrors = Partial<Record<InquiryField, string>>;
@@ -27,6 +28,10 @@ export function InquiryForm() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const { language } = useLanguage();
+  const copy = siteContent[language].form;
+
+  const localizedError = (field: InquiryField) => copy.errors[field];
 
   useEffect(() => {
     let fallbackTimer = 0;
@@ -82,10 +87,10 @@ export function InquiryForm() {
       const errors: FieldErrors = {};
       for (const issue of parsed.error.issues) {
         const field = issue.path[0] as InquiryField;
-        if (field in initialValues && !errors[field]) errors[field] = issue.message;
+        if (field in initialValues && !errors[field]) errors[field] = localizedError(field);
       }
       setFieldErrors(errors);
-      setStatusMessage("Please check the highlighted fields.");
+      setStatusMessage(copy.check);
       setSubmitState("error");
       focusFirstError(errors);
       return;
@@ -93,7 +98,7 @@ export function InquiryForm() {
 
     submittingRef.current = true;
     setSubmitState("submitting");
-    setStatusMessage("Sending your inquiry…");
+    setStatusMessage(copy.sending);
     setFieldErrors({});
 
     try {
@@ -106,18 +111,21 @@ export function InquiryForm() {
 
       if (!response.ok || !result.ok) {
         if (result.fieldErrors) {
-          setFieldErrors(result.fieldErrors);
-          focusFirstError(result.fieldErrors);
+          const localizedErrors = Object.fromEntries(
+            Object.keys(result.fieldErrors).map((field) => [field, localizedError(field as InquiryField)]),
+          ) as FieldErrors;
+          setFieldErrors(localizedErrors);
+          focusFirstError(localizedErrors);
         }
-        throw new Error(result.message || "The inquiry could not be sent.");
+        throw new Error(copy.genericError);
       }
 
       requestIdRef.current = null;
       setSubmitState("success");
-      setStatusMessage("Thanks — your inquiry is on its way. I’ll get back to you as soon as possible.");
+      setStatusMessage(copy.success);
     } catch (error) {
       setSubmitState("error");
-      setStatusMessage(error instanceof Error ? error.message : "Something went wrong while sending your inquiry.");
+      setStatusMessage(error instanceof Error ? error.message : copy.genericError);
     } finally {
       submittingRef.current = false;
     }
@@ -126,8 +134,8 @@ export function InquiryForm() {
   if (submitState === "success") {
     return (
       <div className="border-y border-black py-8" role="status" aria-live="polite">
-        <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#56631f]">Inquiry sent</p>
-        <p className="mt-5 max-w-xl text-2xl leading-9">{statusMessage}</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#56631f]">{copy.sent}</p>
+        <p className="mt-5 max-w-xl text-2xl leading-9">{copy.success}</p>
         <button
           type="button"
           className="mt-8 border-b border-black pb-1 font-mono text-xs uppercase tracking-[0.2em]"
@@ -138,7 +146,7 @@ export function InquiryForm() {
             requestAnimationFrame(() => document.getElementById("inquiry-name")?.focus());
           }}
         >
-          Send another inquiry
+          {copy.another}
         </button>
       </div>
     );
@@ -152,33 +160,33 @@ export function InquiryForm() {
       </div>
 
       <div className="grid gap-x-8 md:grid-cols-2">
-        <Field label="Name" name="name" error={fieldErrors.name} required>
+        <Field label={copy.name} name="name" error={fieldErrors.name} required>
           <input id="inquiry-name" name="name" value={values.name} onChange={(event) => updateValue("name", event.target.value)} className={controlClass} maxLength={100} autoComplete="name" required aria-invalid={Boolean(fieldErrors.name)} aria-describedby={fieldErrors.name ? "inquiry-name-error" : undefined} />
         </Field>
-        <Field label="Email" name="email" error={fieldErrors.email} required>
+        <Field label={copy.email} name="email" error={fieldErrors.email} required>
           <input id="inquiry-email" name="email" type="email" inputMode="email" value={values.email} onChange={(event) => updateValue("email", event.target.value)} className={controlClass} maxLength={254} autoComplete="email" required aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? "inquiry-email-error" : undefined} />
         </Field>
-        <Field label="Company / Brand" name="company" error={fieldErrors.company}>
+        <Field label={copy.company} name="company" error={fieldErrors.company}>
           <input id="inquiry-company" name="company" value={values.company} onChange={(event) => updateValue("company", event.target.value)} className={controlClass} maxLength={120} autoComplete="organization" aria-invalid={Boolean(fieldErrors.company)} aria-describedby={fieldErrors.company ? "inquiry-company-error" : undefined} />
         </Field>
-        <Field label="What do you need?" name="inquiryType" error={fieldErrors.inquiryType} required>
+        <Field label={copy.need} name="inquiryType" error={fieldErrors.inquiryType} required>
           <select id="inquiry-inquiryType" name="inquiryType" value={values.inquiryType} onChange={(event) => updateValue("inquiryType", event.target.value)} className={`${controlClass} cursor-pointer`} required aria-invalid={Boolean(fieldErrors.inquiryType)} aria-describedby={fieldErrors.inquiryType ? "inquiry-inquiryType-error" : undefined}>
-            <option value="" disabled>Select an option</option>
-            {inquiryTypes.map((type) => <option value={type} key={type}>{inquiryTypeLabels[type]}</option>)}
+            <option value="" disabled>{copy.select}</option>
+            {inquiryTypes.map((type) => <option value={type} key={type}>{copy.types[type]}</option>)}
           </select>
         </Field>
       </div>
 
-      <Field label="Tell me about the project" name="message" error={fieldErrors.message}>
-        <textarea id="inquiry-message" name="message" value={values.message} onChange={(event) => updateValue("message", event.target.value)} className={`${controlClass} min-h-36 resize-y leading-7`} maxLength={4000} placeholder="Tell me what you’re building, what already exists, and what you’d like to improve." aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? "inquiry-message-error" : undefined} />
+      <Field label={copy.message} name="message" error={fieldErrors.message}>
+        <textarea id="inquiry-message" name="message" value={values.message} onChange={(event) => updateValue("message", event.target.value)} className={`${controlClass} min-h-36 resize-y leading-7`} maxLength={4000} placeholder={copy.placeholder} aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? "inquiry-message-error" : undefined} />
       </Field>
 
       <div className="flex flex-col gap-4 border-t border-black/20 py-6 sm:flex-row sm:items-center sm:justify-between">
         <p id="inquiry-status" className="max-w-md text-sm leading-6 text-black/60" aria-live="polite">
-          {submitState === "error" ? <>{statusMessage} You can also <a className="underline underline-offset-4" href={`mailto:${siteConfig.email}`}>email me directly</a>.</> : statusMessage}
+          {submitState === "error" ? <>{statusMessage} <a className="underline underline-offset-4" href={`mailto:${siteConfig.email}`}>{copy.fallback}</a>.</> : statusMessage}
         </p>
         <button type="submit" disabled={submitState === "submitting"} className="inline-flex min-h-12 shrink-0 items-center justify-between gap-8 bg-[#090907] px-5 py-3 font-mono text-xs uppercase tracking-[0.2em] text-[#f1eee5] disabled:cursor-wait disabled:opacity-60">
-          <span>{submitState === "submitting" ? "Sending…" : "Send inquiry"}</span>
+          <span>{submitState === "submitting" ? copy.sending : copy.send}</span>
           <span aria-hidden="true">→</span>
         </button>
       </div>

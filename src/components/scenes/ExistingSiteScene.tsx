@@ -1,10 +1,14 @@
 "use client";
 
 import { useRef } from "react";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
+import { siteContent } from "@/content/site";
 import { gsap, useGsapScene } from "@/lib/useGsapScene";
 
 export function ExistingSiteScene() {
   const scope = useRef<HTMLElement>(null);
+  const { language } = useLanguage();
+  const content = siteContent[language].existing;
 
   useGsapScene(scope, () => {
     const tl = gsap.timeline({
@@ -30,8 +34,8 @@ export function ExistingSiteScene() {
           <div className="existing-line h-px bg-black/25" />
         </div>
         <div className="existing-copy grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-14">
-          <h2 className="max-w-[9ch] text-[clamp(3.8rem,10vw,9.8rem)] font-semibold uppercase leading-[0.8] tracking-[-0.05em]">Already have a website?</h2>
-          <p className="max-w-xl text-xl leading-8">I can improve what is already there: redesigns, performance work, custom features, fixes, integrations, and ongoing development without forcing a rebuild.</p>
+          <h2 className="max-w-[9ch] text-[clamp(3.8rem,10vw,9.8rem)] font-semibold uppercase leading-[0.8] tracking-[-0.05em]">{content.title}</h2>
+          <p className="max-w-xl text-xl leading-8">{content.copy}</p>
         </div>
       </div>
     </section>

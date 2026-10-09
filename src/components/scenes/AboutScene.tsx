@@ -1,11 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import { process, siteConfig } from "@/content/site";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
+import { siteContent } from "@/content/site";
 import { gsap, useGsapScene } from "@/lib/useGsapScene";
 
 export function AboutScene() {
   const scope = useRef<HTMLElement>(null);
+  const { language } = useLanguage();
+  const content = siteContent[language].about;
+  const process = content.process;
 
   useGsapScene(scope, () => {
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
@@ -36,8 +40,8 @@ export function AboutScene() {
       scrollTrigger: {
         trigger: scope.current,
         start: "top top",
-        end: `+=${(process.length - 1) * (isMobile ? 46 : 52)}%`,
-        scrub: 1,
+        end: `+=${(process.length - 1) * (isMobile ? 58 : 52)}%`,
+        scrub: isMobile ? 1.05 : 1,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
@@ -63,20 +67,20 @@ export function AboutScene() {
   });
 
   return (
-    <section id="about" ref={scope} className="scene node-grid overflow-hidden px-4 py-16 [--node-grid-size:104px] [--node-line:rgba(241,238,229,0.045)] sm:px-6 sm:py-20 lg:px-8 lg:py-16">
-      <div className="mx-auto grid min-h-[calc(100svh-8rem)] w-full min-w-0 max-w-[1600px] content-center gap-5 sm:min-h-[calc(100svh-10rem)] sm:gap-6 lg:min-h-[calc(100svh-8rem)]">
-        <div className="grid min-w-0 gap-7 lg:grid-cols-[0.68fr_1.32fr] lg:items-start lg:gap-16">
+    <section id="about" ref={scope} className="scene node-grid overflow-hidden px-4 py-10 [--node-grid-size:104px] [--node-line:rgba(241,238,229,0.045)] sm:px-6 md:py-20 lg:px-8 lg:py-16">
+      <div className="mx-auto grid min-h-[calc(100svh-5rem)] w-full min-w-0 max-w-[1600px] content-center gap-4 md:min-h-[calc(100svh-10rem)] md:gap-6 lg:min-h-[calc(100svh-8rem)]">
+        <div className="grid min-w-0 gap-5 md:gap-7 lg:grid-cols-[0.68fr_1.32fr] lg:items-start lg:gap-16">
           <div className="border-l border-white/15 pl-4 sm:pl-5">
-            <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)]">About / Process</p>
-            <p className="mt-4 max-w-md text-lg leading-7 text-[#c4bfb4] sm:text-xl sm:leading-8">{siteConfig.name} is my independent studio for custom web development, with close attention to quality across new builds and ongoing work.</p>
+            <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--acid)]">{content.label}</p>
+            <p className="mt-3 max-w-md text-base leading-6 text-[#c4bfb4] md:mt-4 md:text-xl md:leading-8">{content.statement}</p>
           </div>
-          <div className="relative min-h-[12.5rem] min-w-0 border-l border-white/15 pl-5 sm:min-h-[13.5rem] sm:pl-7">
+          <div className="relative min-h-[11rem] min-w-0 border-l border-white/15 pl-5 md:min-h-[13.5rem] md:pl-7">
             <span className="absolute -left-1 top-0 h-2 w-2 bg-[var(--acid)]" aria-hidden="true" />
             {process.map((step) => (
-              <article className="process-detail absolute inset-y-0 left-5 right-0 max-w-2xl sm:left-7" key={step.id}>
-                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#aaa59a] sm:text-xs">Current step / {step.id}</p>
-                <h3 className="mt-2 text-[clamp(2.45rem,5.8vw,5.6rem)] font-semibold uppercase leading-[0.86] tracking-[-0.035em]">{step.title}</h3>
-                <p className="mt-3 max-w-xl text-base leading-7 text-[#aaa59a] sm:text-lg sm:leading-8">{step.text}</p>
+              <article className="process-detail absolute inset-y-0 left-5 right-0 max-w-2xl md:left-7" key={step.id}>
+                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#aaa59a] md:text-xs">{content.current} / {step.id}</p>
+                <h3 className="mt-2 text-[clamp(2.2rem,10vw,2.75rem)] font-semibold uppercase leading-[0.86] tracking-[-0.035em] md:text-[clamp(2.45rem,5.8vw,5.6rem)]">{step.title}</h3>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-[#aaa59a] md:mt-3 md:text-lg md:leading-8">{step.text}</p>
               </article>
             ))}
           </div>
@@ -94,7 +98,7 @@ export function AboutScene() {
           <span>06</span>
         </div>
 
-        <div className="process-viewport w-full min-w-0 overflow-visible border-y border-white/15 py-4 sm:py-5">
+        <div className="process-viewport w-full min-w-0 overflow-visible border-y border-white/15 py-3 md:py-5">
           <div className="process-track flex w-max gap-10 will-change-transform sm:gap-12">
             {process.map((step) => (
               <span className="process-step text-[clamp(3.7rem,10vw,10.5rem)] font-semibold uppercase leading-none tracking-[-0.045em]" key={step.id}>{step.title}</span>
@@ -103,8 +107,8 @@ export function AboutScene() {
         </div>
 
         <div className="process-scope-line -mt-2 grid gap-2 border-l border-white/15 pl-4 sm:-mt-3 sm:grid-cols-[10rem_1fr] sm:items-start sm:gap-6 sm:pl-5">
-          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--acid)]">Flexible scope</p>
-          <p className="max-w-2xl text-base leading-7 text-[#aaa59a] sm:text-lg sm:leading-8">New builds, existing websites, one feature, or ongoing support. I can join the project wherever the work starts.</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--acid)]">{content.scopeLabel}</p>
+          <p className="max-w-2xl text-sm leading-6 text-[#aaa59a] md:text-lg md:leading-8">{content.scope}</p>
         </div>
       </div>
     </section>
